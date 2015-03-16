@@ -1,0 +1,120 @@
+\documentclass[laporan.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Tinjauan Pustaka}
+
+\section{Penelitian Terkait}
+
+\subsection{Improving quality inspection of food products by computer vision – a review}
+
+Kualitas produk pangan diukur dari penampilan, bau, tekstur, rasa dan berbagai aspek subjektif lainnya yang dinilai oleh manusia. Namun inspeksi dengan tenaga manusia mempunyai banyak kelemahan antara lain ongkos yang tinggi serta  hasil yang tidak konsisten.
+
+Makalah ini\cite{brosnan} membahas berbagai penelitian di bidang computer vision yang diterapkan untuk menggantikan inspeksi manual pada berbagai produk pangan dan pertanian.
+
+Beberapa penelitian memfokuskan pada deteksi cacat bentuk atau tekstur secara visual. Ekspansi Fourier dapat mendeteksi bentuk kultivar apel dengan kesuksesan 90\%.
+
+\subsection{Identifikasi Iris Mata Menggunakan Alihragam Wavelet Haar}
+
+Penelitian ini mencoba pemanfaatan transformasi wavelet Haar untuk pengenalan iris. Pada penelitian ini ciri energi hasil transformasi wavelet menjadi masukan dari perhitungan jarak Euclidean. Akurasi berbagai jenis format citra dan tingkatan dekomposisi diuji dengan hasil menunjukkan bahwa format citra tanpa kompresi dan dekomposisi tingkat 4 menghasilkan hasil yang paling akurat yaitu 85.58\%.\cite{prihartono}
+
+\subsection{Navel Orange Blemish Identification for Quality Grading System}
+
+Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat. Metode yang digunakan berhasil mengenali 96\% dari jeruk yang baik dan 97\% dari jeruk dengan cacat.
+
+\section{Computer Vision}
+
+Citra digital adalah fungsi intensitas warna dua dimensi f(x,y) dimana x dan y mewakili koordinat lokasi suatu titik dan nilai dari fungsi yang merupakan tingkat intensitas warna atau tingkat keabu-abuan dari titik tersebut (Schalkoff, 1989). Citra digital merupakan representasi dari suatu objek nyata yang dapat dikenali oleh komputer.
+
+Pengolahan citra digital atau digital image processing pengolahan sinyal untuk input citra digital dua dimensi. Tujuan pengolahan citra digital adalah untuk meningkatkan kualitas gambar sehingga lebih mudah dilihat oleh manusia atau lebih mudah diolah oleh komputer.
+
+Computer vision adalah bidang studi yang mempelajari metode-metode pengumpulan, pemrosesan, analisis dan penafsiran citra dari dunia nyata dengan tujuan untuk menghasilkan informasi numerik atau simbolis.
+
+Berikut ini adalah pengertian computer vision menurut beberapa pakar
+
+\begin{enumerate}
+\item Ballard dan Brown, computer vision adalah otomatis dan integrasi sebuah range yang luas yang terdiri dari proses-proses dan representasi-representasi terhadap persepsi visual.
+\item Adrian Low, computer vision berhubungan dengan perolehan gambar, pemrosesan, klasifikasi, pengenalan, dan menjadi penggabungan, pengurutan, pembuatan keputusan menuju pengenalan.
+\item Shapiro dan Stockman, computer vision adalah suatu bidang yang bertujuan untuk membuat suatu keputusan yang berguna mengenai objek fisik nyata dan keadaan berdasarkan atas sebuah citra. Computer vision merupakan kombinasi antara pengolahan citra dan pengenalan pola. Hasil keluaran dari proses computer vision adalah pengertian tentang citra.
+\end{enumerate}
+
+Boyle dan Thomas mengatakan bahwa computer vision lebih daripada pengenalan, computer vision melakukan operasi “low level processing” sebagai algoritma image processing yang murni. Mereka juga yang menggolongkan image processing ke dalam computer vision.
+
+\section{Transformasi Wavelet}
+
+Wavelet merupakan sekumpulan fungsi dalam ruang $L^2(R)$ yang memiliki sifat-sifat berikut:
+
+\begin{enumerate}
+\item Berenergi terbatas
+\item Merupakan fungsi band-pass
+\item Merupakan hasil translasi dari sebuah fungsi tunggal
+\end{enumerate}
+
+Wavelet digunakan untuk membagi sebuah fungsi atau sinyal menjadi komponen-komponen frekuensi yang berbeda dan mempelajari tiap komponen dengan resolusi yang sesuai skala masing-masing.
+
+Transformasi wavelet merupakan salah satu teknik untuk merepresentasikan sinyal ke dalam domain frekuensi dan waktu. Proses transformasi wavelet melewatkan sinyal pada filter dengan skala frekuensi yang berbeda, kemudian ditransformasikan dengan fungsi wavelet yang ukurannya disesuaikan dengan rentang frekuensi komponen sinyal.
+
+Transformasi wavelet mengatasi kelemahan pada transformasi Fourier yang tidak memiliki resolusi waktu, serta transformasi Fourier waktu singkat yang resolusi frekuensinya hanya baik pada rentang frekuensi tertentu. Transformasi wavelet adalah solusi yang cocok untuk sinyal non-stasioner.
+
+Transformasi wavelet kontinu didefinisikan sebagai berikut
+% equation
+\begin{equation}
+\gamma(s, \tau) = \int f(t) \phi^{*}_{s,\tau}(t)dt
+\end{equation}
+
+Invers dari TWK didefinisikan sebagai berikut
+% equation
+\begin{equation}
+f(t) = \int \int \gamma(s,\tau)\phi_{s,\tau}(t)d {\tau}ds
+\end{equation}
+
+Fungsi dasar wavelet dapat didefinisikan sesuai kebutuhan. Secara matematika fungsi wavelet didefinisikan sebagai berikut
+%equation
+\begin{equation}
+\phi_{s,\tau}(t) = \frac{1}{s}\phi(\frac{t-\tau}{s})
+\end{equation}
+
+Transformasi wavelet diskrit adalah transformasi wavelet pada sinyal diskrit. Filterisasi wavelet direalisasikan dengan pasangan Quadrature Mirror Filter (QMF) yaitu pasangan filter yang memenuhi persamaan berikut
+%equation
+\begin{equation}
+h[L-1-n]=(-1)^ng[n]
+\end{equation}
+
+Pembagian sinyal menjadi frekuensi tinggi dan rendah ini disebut sebagai dekomposisi. Proses dekomposisi dimulai dengan melewatkan sinyal melewati HPF dan LPF. Sinyal keluaran dari masing-masing filter memiliki rentang frekuensi setengah dari sinyal asli. Setelah filterisasi, setengah dari sample atau subsample dapat dieliminasi berdasarkan aturan Nyquist. Dengan demikian sinyal selalu dapat di-subsample dengan factor 2 dengan cara mengabaikan setengah sample lainnya. Proses dekomposisi ini dapat dilakukan sebanyak satu tingkatan atau lebih. Secara matematika prosesnya adalah
+%equation
+\begin{equation}
+y_{tinggi}[k]=\sum_n x[n]h[2k-n]
+y_{rendah}[k]=\sum_n x[n]g[2k-n]
+\end{equation}
+
+Contoh dekomposisi wavelet tingkat tiga
+\includegraphics[width=10cm]{tex/decomp2d.png}
+
+$y[k]$ adalah hasil dekomposisi. $y[k]$ tinggi adalah detil dari informasi sinyal sedangkan $y[k]$ rendah merupakan taksiran kasar dari fungsi penskalaan. Dengan menggunakan koefisien TWD ini dapat dilakukan proses invers untuk merekonstruksi sinyal asal. Persamaan rekonstruksi pada masing-masing tingkatan dapat ditulis sebagai berikut
+
+\begin{equation}
+x[n]=\sum_k (y_{tinggi}[k]h[-n+2k]+y_{rendah}[k]g[-n+2k])
+\end{equation}
+
+Dekomposisi pada citra menghasilkan informasi rentang frekuensi yang berbeda yaitu frekuensi rendah-rendah (LL), frekuensi rendah-tinggi (LH), frekuensi tinggi-rendah (HL), dan frekuensi tinggi-tinggi (HH). Rentang LL merupakan rentang taksiran penskalaan sedangkan rentang LH, HL dan HH merupakan rentang frekuensi detil informasi.
+
+\includegraphics[width=8cm]{tex/ll.png}
+
+Transformasi wavelet diskrit sering dipilih karena beberapa alasan
+
+\begin{enumerate}
+\item TWD paling dekat dengan \emph{human visual system}
+\item Distorsi yang disebabkan oleh domain wavelet dalam perbandingan kompresi tinggi tidak terlalu mengganggu dibandingkan domain lain pada bit rate yang sama.
+\item Bit-error rate yang rendah. Bit-error rate merupakan perbandingan antara bit yang salah diekstraksi dengan total bit yang disisipkan.
+\end{enumerate}
+
+Salah satu karakteristik yang dapat diambil dari hasil TWD adalah energi. Energi ini akan menjadi masukan untuk perhitungan fungsi diskriminasi dengan jarak Euclidean.
+Energi diambil dari jumlah kuadrat nilai koefisien keempat ciri.
+\begin{equation}
+E_{a,h,v,d}=\frac{\sum C^2_{a,h,v,d}}{\sum C^2} 100\%
+\end{equation}
+\section{Kerangka Berpikir}
+
+Penelitian ini bertujuan untuk mengklasifikasikan kualitas tekstur kulit jeruk sesuai klasifikasi SNI. Pada penelitian ini penulis mempersiapkan sistem untuk melakukan pengambilan foto-foto buah jeruk yang akan diukur kualitasnya. Foto-foto tersebut akan dihitung prosentase energi tiap komponen dan diukur korelasinya dengan perhitungan \emph{Euclidian Distance}.
+
+\end{document}

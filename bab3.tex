@@ -1,0 +1,71 @@
+\documentclass[laporan.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Metode Penelitian}
+
+\section{Metode Penelitian}
+
+Dalam bab ini akan diuraikan mengenai metode yang digunakan dalam penelitian. Metode penelitian menurut Sugiyono pada dasarnya merupakan cara ilmiah untuk mendapatkan data dengan tujuan dan kegunaan tertentu.
+
+Penelitian yang penulis lakukan adalah penelitian analisis. Penelitian analisis adalah penelitian yang dimulai dari teori dan berakhir dengan fakta , karenanya dalam riset ini ada lebih dari satu hipotesisi yang terlibat. Teori berfungsi sebagai masukan sekaligus sebagai pemecahan masalah yang bersangkutan
+
+\section{Objek Penelitian}
+
+Objek penelitian yang penulis gunakan dalam penelitian ini adalah jeruk keprok (\emph{Citrus sinenesis}). Fokus pengamatan adalah cacat pada tekstur kulit jeruk.
+
+\section{Jenis dan Sumber Data}
+
+Pada penelitian ini, penulis menggunakan beberapa jenis data.
+
+\subsection{Data Primer}
+
+Data primer adalah data yang diperoleh secara langsung, dapat diperoleh melalui wawancara atau observasi secara langsung. Data yang penulis gunakan adalah berupa foto-foto jeruk keprok dari berbagai kelas kualitas.
+
+\subsection{Data Sekunder}
+
+Data sekunder adalah data primer yang sudah diolah lebih lanjut dan disajikan dengan baik oleh pihak pengumpul data primer atau pihak lainnya. Data yang penulis gunakan diolah dari foto-foto jeruk yang telah dipersiapkan
+
+Selain itu, penulis juga mengumpulkan data melalui studi literatur, yaitu dengan mempelajari jurnal dan hasil penelitian yang sudah ada untuk mendapatkan pemahaman tentang analisis tekstur.
+
+\section{Analisis Kebutuhan Perangkat}
+
+Tujuan  dari  proses analisa kebutuhan aplikasi adalah untuk mengetahui sifat dari  kebutuhan  sistem  sehingga  mempermudah  dalam perancangan. Tujuan lain dari analisa ini adalah untuk mendokumentasikan sifat  program  tersebut. Proses analisis meliputi analisis kebutuhan perangkat lunak dan perangkat keras, termasuk analisis terhadap kebutuhan sistem.
+
+\subsection{Kebutuhan Perangkat Lunak}
+
+\begin{description}
+
+\item [Octave] 
+\emph{Software} yang digunakan dalam penelitian ini adalah Octave dengan \emph{package} \texttt{image} dan \texttt{ltfat} untuk melakukan pemrosesan citra dan pengolahan data secara numerik.
+
+\end{description}
+
+\subsection{Kebutuhan Perangkat Keras}
+
+\begin{enumerate}
+
+\item PC yang dapat menjalankan perangkat lunak Octave
+\item Kamera minimum 2MP
+
+\end{enumerate}
+
+\subsection{Tahapan Penelitian}
+
+Langkah-langkah penelitian yang harus dilakukan yaitu:
+
+\begin{enumerate}
+\item mengambil foto-foto jeruk dari berbagai kualitas, Untuk akurasi data maka pengambilan foto perlu dilakukan pada kondisi yang terkontrol. Berikut ini adalah prosedur untuk pengambilan foto
+\begin{enumerate}
+\item jarak objek dengan kamera 30cm
+\item latar belakang dan alas tempat objek diletakkan berwarna biru muda
+\item pencahayaan lampu \emph{fluorescent} 10W dari depan objek sejajar sumbu fokus kamera
+\item pengambilan gambar sebanyak dua kali dari bagian samping (objek diputar 180$^o$) dan sekali lagi dari bagian bawah
+\end{enumerate}
+\item menghitung koefisien DWT dari foto-foto jeruk dan menyimpan hasilnya
+\item membagi data menjadi training set dan test set
+\item menentukan korelasi vektor koefisien DWT dengan ukuran cacat tekstur pada training data set
+\item menerapkan aturan yang diperoleh dari langkah sebelumnya ke test data set
+\end{enumerate}
+
+\end{document}

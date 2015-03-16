@@ -1,0 +1,143 @@
+\documentclass[a4paper, 12pt, oneside]{memoir}
+
+\usepackage[a4paper,left=3.5cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+
+
+\usepackage{subfiles}
+\usepackage{cite}
+\usepackage{fontspec}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage{tocloft}
+\usepackage{hyperref}
+
+\usepackage{titlesec}
+
+\usepackage{tikz}
+\usepackage{tikz-uml}
+\usepackage{tikz-er2}
+
+% figure sanitizer
+\makeatletter \setlength{\@fptop}{0pt} \makeatother
+
+\usepackage{setspace}
+
+\pagestyle{myheadings}
+
+\setmainfont{Liberation Serif}
+
+% custom title & section 
+
+\usepackage[bahasa]{babel}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand*{\bibname}{DAFTAR PUSTAKA}
+%\renewcommand{\contentsname}{DAFTAR ISI}
+\addto{\captionsbahasa}{\renewcommand*{\contentsname}{DAFTAR ISI}}
+\addto{\captionsbahasa}{\renewcommand*{\listfigurename}{DAFTAR GAMBAR}}
+\addto{\captionsbahasa}{\renewcommand*{\listtablename}{DAFTAR TABEL}}
+\addto{\captionsbahasa}{%
+  \renewcommand*{\bibname}{DAFTAR PUSTAKA}
+}
+%\renewcommand{\contentsname}{\hfill\bfseries\Large DAFTAR ISI\hfill}   
+%\renewcommand{\cftaftertoctitle}{\hfill}
+
+\renewcommand{\printtoctitle}{\centering\large\bfseries}
+\renewcommand{\printloftitle}{\centering\large\bfseries}
+\renewcommand{\printlottitle}{\centering\large\bfseries}
+\addtolength{\cftfigurenumwidth}{1em}
+\addtolength{\cfttablenumwidth}{1em}
+
+\linespread{1.3}
+
+\hyphenation{java-script di-ha-rap-kan peng-ga-bung-an mem-vi-su-a-li-sa-si-kan u-di-nus u-ni-ver-si-tas di-an nus-wan-to-ro %
+di-per-lu-kan me-mi-ni-ma-li-sir e-di-tor me-nge-lo-la su-per-ad-min me-nyim-pan me-lim-pah-kan}
+
+\setcounter{secnumdepth}{3}
+
+\titleformat
+{\chapter} %
+[display] %
+{\bfseries\large} %
+{\centering BAB \ \thechapter} %
+{0.5ex}
+{
+	\centering
+}
+[]
+
+\titlespacing*{\chapter}{0pt}{3ex}{6ex}
+\titlespacing{\section}{-1cm}{*1.5}{*1.5}
+\titleformat*{\section}{\bfseries\large}
+
+\makeatletter
+\newcommand\invisiblechapter[1]{%
+  %\refstepcounter{chapter}%
+  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
+  \chaptermark{#1}\phantom{}}
+\makeatother
+
+\setlength{\parindent}{6ex}
+
+%\titleformat{\section}[display]{\bfseries\large}{\arabic{chapter}.\arabic{section}}{0ex}{}
+
+\author{Helmi Fitria Nugroho (A11.2011.06492)}
+
+\title{Perancangan Laman Web Internasional Universitas Dian Nuswantoro}
+
+\begin{document}
+
+\bahasahyphenmins
+\datebahasa
+\captionsbahasa
+
+
+%\maketitle
+
+\pagenumbering{roman}%
+
+\begin{Spacing}{1.5}
+
+\subfile{tex/halamanjudul.tex}
+
+\subfile{tex/persetujuan.tex}
+
+\subfile{tex/pengesahan.tex}
+
+\subfile{tex/keaslian.tex}
+
+\subfile{tex/publikasi.tex}
+
+\subfile{tex/ucapan.tex}
+
+\end{Spacing}
+
+\begin{Spacing}{1}
+
+\subfile{tex/abstrak.tex}
+
+%\subfile{tex/daftarisi.tex}
+
+\end{Spacing}
+
+\clearpage
+
+\pagenumbering{arabic}
+
+\subfile{tex/bab1.tex}
+
+\subfile{tex/bab2.tex}
+
+\subfile{tex/bab3.tex}
+
+%\subfile{tex/bab4.tex}
+
+%\subfile{tex/bab5.tex}
+
+\subfile{tex/daftarpustaka.tex}
+
+%\printbibliography[title=DAFTAR PUSTAKA]
+
+
+\end{document}
