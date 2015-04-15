@@ -22,6 +22,10 @@ Penelitian ini mencoba pemanfaatan transformasi wavelet Haar untuk pengenalan ir
 
 Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat. Metode yang digunakan berhasil mengenali 96\% dari jeruk yang baik dan 97\% dari jeruk dengan cacat.
 
+\subsection{Edge detection by scale multiplication in wavelet domain}
+
+Penelitian ini mengajukan metode deteksi tepi citra dengan perkalian dua hasil transformasi wavelet pada skala berdekatan untuk memperjelas struktur tepi dan meredam \emph{noise} (derau). Tepi dan noise memiliki karakteristik transformasi wavelet yang beda, dengan struktur tepi muncul pada setiap skala sementara \emph{noise} lenyap pada skala yang lebih besar. Metode yang disarankan mengambil maksimum lokal hasil perkalian dua \emph{subband} DWT setelah melalui proses \emph{thresholding}.
+
 \section{Computer Vision}
 
 Citra digital adalah fungsi intensitas warna dua dimensi f(x,y) dimana x dan y mewakili koordinat lokasi suatu titik dan nilai dari fungsi yang merupakan tingkat intensitas warna atau tingkat keabu-abuan dari titik tersebut (Schalkoff, 1989). Citra digital merupakan representasi dari suatu objek nyata yang dapat dikenali oleh komputer.
@@ -39,6 +43,12 @@ Berikut ini adalah pengertian computer vision menurut beberapa pakar
 \end{enumerate}
 
 Boyle dan Thomas mengatakan bahwa computer vision lebih daripada pengenalan, computer vision melakukan operasi “low level processing” sebagai algoritma image processing yang murni. Mereka juga yang menggolongkan image processing ke dalam computer vision.
+
+\section{Tepi dan Pendeteksian Tepi}
+
+Tepi (\emph{edge}) adalah kontur pada citra tempat terjadinya perubahan kecerahan citra secara drastis. Dalam pengolahan citra, tepi sering diinterpretasikan sebagai suatu singularitas. Singularitas sebuah fungsi dapat dikarakterisasi sebagai diskontinuitas dengan gradien yang mendekati tak hingga. Pada data citra yang bersifat diskrit, tepi didefinisikan sebagai maksima lokal sebuah gradien.
+
+Pendeteksian tepi merupakan perkakas penting dalam pengenalan pola. Pendeteksi tepi pada dasarnya adalah \emph{high-pass filter} yang dapat digunakan untuk mengambil titik-titik tepi pada citra. Pada penelitian ini akan digunakan \emph{wavelet} untuk melakukan pendeteksian tepi.
 
 \section{Transformasi Wavelet}
 
@@ -88,7 +98,7 @@ y_{rendah}[k]=\sum_n x[n]g[2k-n]
 \end{equation}
 
 Contoh dekomposisi wavelet tingkat tiga
-\includegraphics[width=10cm]{tex/decomp2d.png}
+\includegraphics[width=8cm]{tex/decomp2d.png}
 
 $y[k]$ adalah hasil dekomposisi. $y[k]$ tinggi adalah detil dari informasi sinyal sedangkan $y[k]$ rendah merupakan taksiran kasar dari fungsi penskalaan. Dengan menggunakan koefisien TWD ini dapat dilakukan proses invers untuk merekonstruksi sinyal asal. Persamaan rekonstruksi pada masing-masing tingkatan dapat ditulis sebagai berikut
 
@@ -108,13 +118,5 @@ Transformasi wavelet diskrit sering dipilih karena beberapa alasan
 \item Bit-error rate yang rendah. Bit-error rate merupakan perbandingan antara bit yang salah diekstraksi dengan total bit yang disisipkan.
 \end{enumerate}
 
-Salah satu karakteristik yang dapat diambil dari hasil TWD adalah energi. Energi ini akan menjadi masukan untuk perhitungan fungsi diskriminasi dengan jarak Euclidean.
-Energi diambil dari jumlah kuadrat nilai koefisien keempat ciri.
-\begin{equation}
-E_{a,h,v,d}=\frac{\sum C^2_{a,h,v,d}}{\sum C^2} 100\%
-\end{equation}
-\section{Kerangka Berpikir}
-
-Penelitian ini bertujuan untuk mengklasifikasikan kualitas tekstur kulit jeruk sesuai klasifikasi SNI. Pada penelitian ini penulis mempersiapkan sistem untuk melakukan pengambilan foto-foto buah jeruk yang akan diukur kualitasnya. Foto-foto tersebut akan dihitung prosentase energi tiap komponen dan diukur korelasinya dengan perhitungan \emph{Euclidian Distance}.
-
+% edge detection
 \end{document}

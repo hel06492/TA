@@ -58,14 +58,13 @@ Langkah-langkah penelitian yang harus dilakukan yaitu:
 \item mengambil foto-foto jeruk dari berbagai kualitas, Untuk akurasi data maka pengambilan foto perlu dilakukan pada kondisi yang terkontrol. Berikut ini adalah prosedur untuk pengambilan foto
 \begin{enumerate}
 \item jarak objek dengan kamera 30cm
-\item latar belakang dan alas tempat objek diletakkan berwarna biru muda
+\item latar belakang dan alas tempat objek diletakkan berwarna hitam
 \item pencahayaan lampu \emph{fluorescent} 10W dari depan objek sejajar sumbu fokus kamera
 \item pengambilan gambar sebanyak dua kali dari bagian samping (objek diputar 180$^o$) dan sekali lagi dari bagian bawah
 \end{enumerate}
-\item menghitung koefisien DWT dari foto-foto jeruk dan menyimpan hasilnya
-\item membagi data menjadi training set dan test set
-\item menentukan korelasi vektor koefisien DWT dengan ukuran cacat tekstur pada training data set
-\item menerapkan aturan yang diperoleh dari langkah sebelumnya ke test data set
+\item melakukan transformasi wavelet untuk pendeteksian tepi citra
+\item pembuatan \emph{mask} untuk menandai objek jeruk dan daerah-daerah cacat pada jeruk
+\item perhitungan luas daerah cacat pada permukaan kulit jeruk
 \end{enumerate}
 
 \end{document}
