@@ -22,6 +22,10 @@ Penelitian ini mencoba pemanfaatan transformasi wavelet Haar untuk pengenalan ir
 
 Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat. Metode yang digunakan berhasil mengenali 96\% dari jeruk yang baik dan 97\% dari jeruk dengan cacat.
 
+\subsection{A Wavelet Approach to Edge Detection}
+
+Tesis ini menjelaskan mekanisme deteksi tepi dari sudut pandang transformasi wavelet dan metode deteksi tepi multi-level berbasis wavelet. Menurut tesis ini, \emph{dyadic scale} yang digunakan pada transformasi wavelet tidak selalu dapat diadaptasikan secara optimal untuk citra dengan banyak \emph{noise}. Tesis ini mengusulkan penggunaan algoritma \emph{cascade} yang dapat menemukan skala yang tepat untuk sinyal dan tingkat \emph{noise} tertentu.
+
 \subsection{Edge detection by scale multiplication in wavelet domain}
 
 Penelitian ini mengajukan metode deteksi tepi citra dengan perkalian dua hasil transformasi wavelet pada skala berdekatan untuk memperjelas struktur tepi dan meredam \emph{noise} (derau). Tepi dan noise memiliki karakteristik transformasi wavelet yang beda, dengan struktur tepi muncul pada setiap skala sementara \emph{noise} lenyap pada skala yang lebih besar. Metode yang disarankan mengambil maksimum lokal hasil perkalian dua \emph{subband} DWT setelah melalui proses \emph{thresholding}.
@@ -118,5 +122,83 @@ Transformasi wavelet diskrit sering dipilih karena beberapa alasan
 \item Bit-error rate yang rendah. Bit-error rate merupakan perbandingan antara bit yang salah diekstraksi dengan total bit yang disisipkan.
 \end{enumerate}
 
-% edge detection
+\section{Deteksi Tepi}
+
+
+\section{Transformasi Wavelet untuk Deteksi Tepi}
+
+\subsection{Perancangan Wavelet}
+
+Cardinal B-splines dengan orde m, $N_m(x)$, didefinisikan secara induktif melalui konvolusi fungsi kotak:
+
+\begin{equation}
+	N_1(x)=B(x)=\begin{cases}
+		1, 0 \leq x \leq 1 \\
+		0, untuk selainnya
+	\end{cases} ,
+	N_m(x)=N_{m-1} \ast N_1(x)
+\end{equation}
+
+Cardinal B-splines semakin mendekati fungsi Gaussian $\phi_n(x)$ untuk $n$ mendekati tak hingga.
+
+Gaussian wavelet untuk skala integer $n > 2$ dapat diperoleh dengan pendekatan
+
+\begin{align}
+	\psi_n(x) & \approx \overbrace{N_1 \ast \ldots  N_1}^{n-2} \ast H(x) \\
+	& = N_{n-2} \ast H(x)
+\end{align}
+
+dengan $H(x)$ merupakan wavelet Haar
+
+\begin{align}
+	H(x) & = \begin{cases}
+		-1, 0 \leq x \leq \frac{1}{2}; \\
+		1, \frac{1}{2} \leq x \leq 1; \\
+		0, selainnya
+	\end{cases} \\
+	\psi_1(x) & \approx H(x)
+\end{align}
+
+$\psi(x)$ merupakan wavelet Gaussian dengan skala 1.
+
+Selanjutnya persamaan di atas dapat dikembangkan untuk fungsi 2D sebagai berikut:
+
+\begin{align}
+	N_1(x,y) & = B(x,y) = \begin{cases}
+		1, 0 \leq x \leq 1, 0 \leq y \leq 1; \\
+		0, selainnya \\
+	\end{cases} \\
+	H^1(x,y) & = \begin{cases}
+		-1, 0 \leq x \leq \frac{1}{2}, 0 \leq y \leq 1;
+		1, \frac{1}{2} \leq x \leq 1, 0 \leq y \leq 1;
+		0, selainnya \\
+	\end{cases} \\
+	H^2(x,y) & = \begin{cases}
+		-1, 0 \leq x \leq 1, 0 \leq y \leq \frac{1}{2};
+		1, 0 \leq x \leq 1, 0 \leq y \leq \frac{1}{2};
+		0, selainnya \\
+	\end{cases} \\
+\end{align}
+
+Dengan demikian,
+
+\begin{align}
+	W^1f(n,x,y) & \approx \overbrace{N_1 \ast \ldots \ast N_1}^{n-2} \ast H^1 \ast f(x,y);
+	W^2f(n,x,y) & \approx \overbrace{N_1 \ast \ldots \ast N_1}^{n-2} \ast H^2 \ast f(x,y);
+\end{align}
+
+Kedua persamaan di atas digunakan untuk mengukur transformasi wavelet horizontal dan vertikal pada skala $n$.
+
+\subsection{Algoritma Deteksi Tepi dengan Wavelet}
+
+\section{Identifikasi Daerah Cacat Pada Kulit Jeruk}
+
+\subsection{Operasi Morfologi untuk Tepi Objek dan Batas Daerah Cacat}
+
+\subsection{Identifikasi Daerah Cacat Berdasarkan Nilai Pixel}
+
+\subsection{Pengukuran Luas Daerah Cacat}
+% operasi spasial untuk mask
+% klasifikasi mask berdasarkan jenis pixel
+
 \end{document}
