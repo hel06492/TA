@@ -191,6 +191,18 @@ Kedua persamaan di atas digunakan untuk mengukur transformasi wavelet horizontal
 
 \subsection{Algoritma Deteksi Tepi dengan Wavelet}
 
+\subsection{Algoritma Deteksi Tepi Canny}
+
+Algoritma deteksi tepi Canny terdiri dari lima langkah, yaitu
+
+\begin{description}
+\item [Penghalusan:] menghaluskan citra untuk menghilangkan \emph{noise}.
+\item [Perhitungan gradien:] perhitungan gradien perubahan nilai intensitas pada tiap titik.
+\item [Supresi non-maksimum:] penghilangan hasil perhitungan gradien yang bukan merupakan maksium lokal.
+\item [\emph{Double thresholding:}] penentuan tepi berdasarkan ambang batas.
+\item [Pelacakan tepi berdasarkan histeresis:] menghilangkan tepi lemah yang tidak terhubung dengan tepi yang kuat.
+\end{description}
+
 \section{Identifikasi Daerah Cacat Pada Kulit Jeruk}
 
 \subsection{Operasi Morfologi untuk Tepi Objek dan Batas Daerah Cacat}
