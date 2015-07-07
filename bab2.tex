@@ -203,11 +203,35 @@ Algoritma deteksi tepi Canny terdiri dari lima langkah, yaitu
 \item [Pelacakan tepi berdasarkan histeresis:] menghilangkan tepi lemah yang tidak terhubung dengan tepi yang kuat.
 \end{description}
 
+Penghalusan dilakukan dengan menggunakan filter \emph{Gaussian}. Penghalusan bertujuan untuk menghilangkan \emph{noise} agar tidak mempengaruhi hasil deteksi tepi.
+
+Perhitungan gradien dilakukan pada citra yang telah dihaluskan dengan operator Sobel. Citra difilter dengan dua \emph{mask} yang mengukur gradien pada arah sumbu $x$ dan sumbu $y$.
+
+\begin{equation}
+\begin{split}
+K_{GX} = \begin{bmatrix}
+-1 & 0 & 1 \\
+-2 & 0 & 2 \\
+-1 & 0 & 1
+\end{bmatrix}
+\\
+K_{GY} = \begin{bmatrix}
+1 & 2 & 1 \\
+0 & 0 & 0 \\
+-1 & -2 & -1
+\end{bmatrix}
+\end{split}
+\end{equation}
+
 \section{Identifikasi Daerah Cacat Pada Kulit Jeruk}
 
-\subsection{Operasi Morfologi untuk Tepi Objek dan Batas Daerah Cacat}
-
 \subsection{Identifikasi Daerah Cacat Berdasarkan Nilai Pixel}
+
+\subsection{Operasi \emph{Region Filling} untuk Menandai Daerah Cacat}
+
+\begin{equation}
+X_k = (X_{k-1} \oplus B) \cap A^c  k=1,2,3,\ldots
+\end{equation}
 
 \subsection{Pengukuran Luas Daerah Cacat}
 % operasi spasial untuk mask
