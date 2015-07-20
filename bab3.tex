@@ -57,13 +57,7 @@ Tujuan  dari  proses analisa kebutuhan aplikasi adalah untuk mengetahui sifat da
 Langkah-langkah penelitian yang harus dilakukan yaitu:
 
 \begin{enumerate}
-\item mengambil foto-foto jeruk dari berbagai kualitas, Untuk akurasi data maka pengambilan foto perlu dilakukan pada kondisi yang terkontrol. Berikut ini adalah prosedur untuk pengambilan foto
-\begin{enumerate}
-\item jarak objek dengan kamera 30cm
-\item latar belakang dan alas tempat objek diletakkan berwarna hitam
-\item pencahayaan lampu \emph{fluorescent} 10W dari depan objek yang diletakkan di samping kamera
-\item pengambilan gambar sebanyak dua kali dari bagian samping (objek diputar 180$^o$) dan sekali lagi dari bagian bawah
-\end{enumerate}
+\item mengambil foto-foto jeruk dari berbagai kualitas, Untuk akurasi data maka pengambilan foto perlu dilakukan pada kondisi yang terkontrol.
 \item mengubah foto berwarna menjadi citra \emph{grayscale}
 \item deteksi tepi dengan algoritma Canny
 \item penentuan \emph{threshold} dari nilai \emph{magnitude of gradient} nilai tepi untuk menghilangkan tepi yang tidak membatasi daerah cacat
@@ -71,5 +65,23 @@ Langkah-langkah penelitian yang harus dilakukan yaitu:
 \item pembuatan \emph{mask} untuk menandai objek jeruk dan daerah-daerah cacat pada jeruk
 \item perhitungan luas daerah cacat pada permukaan kulit jeruk
 \end{enumerate}
+
+\subsubsection{Pengambilan Foto}
+
+Pengambilan foto dilakukan dengan perlengkapan-perlengkapan berikut
+
+\begin{enumerate}
+\item Kamera DSLR Nikon D3100
+\item Sumber cahaya lampu LED Philips 5W dan \emph{stand}
+\item Kain hitam
+\end{enumerate}
+
+Kamera DSLR diset sebagai berikut: sensitivitas ISO 200, mode pencahayaan \texttt{aperture priority}, format citra JPEG dengan resolusi axb pixel, panjang fokus x mm.
+
+Kamera, sumber cahaya dan objek disusun sebagai berikut.
+
+Pengambilan foto diulang dua kali dengan objek diputar 180$^o$ untuk mengambil gambar semua sisi jeruk.
+
+\subsubsection{Pengolahan Awal}
 
 \end{document}

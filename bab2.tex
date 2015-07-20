@@ -223,11 +223,17 @@ K_{GY} = \begin{bmatrix}
 \end{split}
 \end{equation}
 
+Operator Sobel menghasilkan nilai gradien pada arah $x$ dan $y$, namun besar gradien ini belum merupakan garis tipis yang menunjukkan tepi. Tepi yang sebenarnya dapat dicari dari nilai maksimum lokal gradien pada arah yang sama. Arah gradien didapatkan dari pengukuran nilai $arctan$ gradien pada kedua arah yang selanjutnya dibulatkan menjadi delapan arah diskrit dengan sudut sebesar 45$^o$. Nilai yang bukan maksimum lokal dibuang dari citra gradien.
+
 \section{Identifikasi Daerah Cacat Pada Kulit Jeruk}
+
+Setelah batas-batas warna kulit jeruk didapatkan melalui deteksi tepi, langkah selanjutnya adalah menentukan apakah region yang dibatasi oleh tepi merupakan kulit yang normal atau cacat. Untuk itu dilakukan dua langkah yaitu penentuan region cacat berdasarkan nilai intensitas pixel dari tiap region warna dan penandaan seluruh pixel yang ada pada region tersebut.
 
 \subsection{Identifikasi Daerah Cacat Berdasarkan Nilai Pixel}
 
-\subsection{Operasi \emph{Region Filling} untuk Menandai Daerah Cacat}
+\subsection{Operasi \emph{Hole Filling} untuk Menandai Daerah Cacat}
+
+Daerah cacat yang telah dibatasi oleh tepi dapat diangggap sebagai sebuah lubang. Dari sebuah titik tepi $(x, y)$ titik $(x+1, y)$ ditandai sebagai titik cacat atau normal, lalu seluruh daerah yang dibatasi tepi tersebut ditandai seperti titik $(x+1, y)$.
 
 \begin{equation}
 X_k = (X_{k-1} \oplus B) \cap A^c  k=1,2,3,\ldots
