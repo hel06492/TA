@@ -225,6 +225,8 @@ K_{GY} = \begin{bmatrix}
 
 Operator Sobel menghasilkan nilai gradien pada arah $x$ dan $y$, namun besar gradien ini belum merupakan garis tipis yang menunjukkan tepi. Tepi yang sebenarnya dapat dicari dari nilai maksimum lokal gradien pada arah yang sama. Arah gradien didapatkan dari pengukuran nilai $arctan$ gradien pada kedua arah yang selanjutnya dibulatkan menjadi delapan arah diskrit dengan sudut sebesar 45$^o$. Nilai yang bukan maksimum lokal dibuang dari citra gradien.
 
+\emph{Double thresholding} dilakukan untuk membuang nilai-nilai yang tidak diinginkan, misalnya tepi yang timbul dari perbedaan intensitas cahaya. Pemilihan nilai ambang batas sangat menentukan akurasi identifikasi tepi-tepi yang relevan dari objek.
+
 \section{Identifikasi Daerah Cacat Pada Kulit Jeruk}
 
 Setelah batas-batas warna kulit jeruk didapatkan melalui deteksi tepi, langkah selanjutnya adalah menentukan apakah region yang dibatasi oleh tepi merupakan kulit yang normal atau cacat. Untuk itu dilakukan dua langkah yaitu penentuan region cacat berdasarkan nilai intensitas pixel dari tiap region warna dan penandaan seluruh pixel yang ada pada region tersebut.
