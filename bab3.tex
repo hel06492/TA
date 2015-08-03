@@ -37,7 +37,7 @@ Tujuan  dari  proses analisa kebutuhan aplikasi adalah untuk mengetahui sifat da
 \begin{description}
 
 \item [Octave] 
-\emph{Software} yang digunakan dalam penelitian ini adalah Octave dengan \emph{package} \texttt{image} untuk melakukan pemrosesan citra dan pengolahan data secara numerik.
+\emph{Software} yang digunakan dalam penelitian ini adalah Octave dengan \emph{package} \texttt{image} untuk melakukan pemrosesan citra dan pengolahan data secara numerik. Matlab dapat digunakan sebagai pengganti Octave.
 
 \end{description}
 
@@ -47,8 +47,8 @@ Tujuan  dari  proses analisa kebutuhan aplikasi adalah untuk mengetahui sifat da
 
 \item PC yang dapat menjalankan perangkat lunak Octave
 \item Kamera minimum 2MP
-\item Lampu \emph{flourescent} 10W
-\item Backdrop kertas hitam
+\item Lampu LED 5W
+\item Backdrop kain hitam
 
 \end{enumerate}
 
@@ -59,7 +59,7 @@ Langkah-langkah penelitian yang harus dilakukan yaitu:
 \begin{enumerate}
 \item mengambil foto-foto jeruk dari berbagai kualitas, Untuk akurasi data maka pengambilan foto perlu dilakukan pada kondisi yang terkontrol.
 \item pengolahan awal foto
-\item deteksi tepi dengan algoritma Canny
+\item klasifikasi jeruk
 \item pembuatan \emph{mask} untuk menandai objek jeruk dan daerah-daerah cacat pada jeruk
 \item perhitungan luas daerah cacat pada permukaan kulit jeruk
 \end{enumerate}
@@ -81,12 +81,22 @@ Kamera, sumber cahaya dan objek disusun sebagai berikut.
 
 Pengambilan foto diulang dua kali dengan objek diputar 180$^o$ untuk mengambil gambar semua sisi jeruk.
 
-\subsubsection{Pengolahan Awal}
+\subsubsection{Pengolahan Awal Foto}
 
-Pada tahap pengolahan awal ukuran dan resolusi foto diperkecil untuk mengurangi beban pemrosesan sistem. Citra \emph{grayscale} dipersiapkan dari foto yang telah diperkecil ukuran dan resolusinya.
+Pada tahap pengolahan awal ukuran dan resolusi foto diperkecil untuk mengurangi beban pemrosesan sistem. Karena lingkungan pengambilan foto yang kurang ideal maka diperlukan penyuntingan manual gambar untuk menghilangkan latar belakang dan objek selain jeruk.
 
-\subsubsection{Deteksi Tepi dengan Algoritma Canny}
+\subsubsection{Klasifikasi Pixel}
 
-Deteksi tepi dilakukan pada citra \emph{grayscale}, komponen warna merah (R) dan komponen warna hijau (G).
+Pada citra jeruk dilakukan klasifikasi pixel sesuai dengan metode yang dijelaskan di Bab II. Hasil yang didapatkan adalah matriks angka integer yang menunjukkan kelas-kelas untuk tiap pixel.
+
+\subsubsection{Pembuatan \emph{Mask}}
+
+Dari matriks kelas pixel titik-titik dengan nilai tertinggi diberi nilai 1 sedangkan sisanya diberi nilai 0. Langkah ini menghasilkan citra biner $T$, nilai 1 menunjukkan tekstur normal di bagian tengah jeruk. Lubang-lubang pada citra biner merupakan titik-titik yang digolongkan sebagai cacat.
+
+Untuk mendapatkan daerah cacat, dibuat sebuah \emph{mask} $T'$ dengan cara menambal lubang pada citra biner dengan algoritma \emph{convex hull}. Daerah cacat didapatkan dari selisih antara \emph{mask} $T'$ dan citra biner $T$. Langkah ini tidak mendeteksi cacat pada keseluruhan sisi jeruk yang ditampilkan pada citra, bagian tepi jeruk dengan intensitas cahaya lebih rendah dihapus dari $T$.
+
+\subsection{Penghitungan Luas Daerah Cacat}
+
+Luas daerah cacat diperkirakan dari prosentase jumlah pixel cacat yang terdeteksi terhadap jumlah pixel \emph{mask} hasil operasi penutupan lubang. Kualitas jeruk dapat ditentukan berdasarkan prosentase cacat sesuai dengan standard SNI.
 
 \end{document}
