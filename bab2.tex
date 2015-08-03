@@ -80,20 +80,20 @@ Algoritma secara umum
 	p_i = \frac{n_i}{t_n}
 \end{equation}
 \item Mulai dengan intensitas \emph{grayscale} terendah $t=minGL$, bagi data menjadi dua kelas dengan nilai $minGL \ldots t$ dan $t \ldots maxGL$. Hitung probabilitas tiap kelas.
-\begin{equation}
-	\omega_1 = \sum_{i=minGL}^t p_i
-	\omega_2 = \sum_{i=t+1}^{maxGL} p_i
-\end{equation}
+\begin{align}
+	\omega_1 = & \sum_{i=minGL}^t p_i \\
+	\omega_2 = & \sum_{i=t+1}^{maxGL} p_i
+\end{align}
 \item Hitung rata-rata masing-masing kelas.
-\begin{equation}
-	\mu_1 = \frac{\sum_{i=minGL}^t p_i}{\omega_1}
-	\mu_2 = \frac{\sum_{i=t+1}^{maxGL} p_i}{\omega_2}
-\end{equation}
+\begin{align}
+	\mu_1 = & \frac{\sum_{i=minGL}^t p_i}{\omega_1} \\
+	\mu_2 = & \frac{\sum_{i=t+1}^{maxGL} p_i}{\omega_2}
+\end{align}
 \item Hitung variansi untuk masing-masing kelas.
-\begin{equation}
-	\sigma_1^2 = \frac{\sum_{i=minGL}^t (i - \mu_1)^2 p_i}{\omega_1}
-	\sigma_2^2 = \frac{\sum_{i=t+1}^{maxGL} (i - \mu_2)^2 p_i}{\omega_2}
-\end{equation}
+\begin{align}
+	\sigma_1^2 = & \frac{\sum_{i=minGL}^t (i - \mu_1)^2 p_i}{\omega_1} \\
+	\sigma_2^2 = & \frac{\sum_{i=t+1}^{maxGL} (i - \mu_2)^2 p_i}{\omega_2}
+\end{align}
 \item Hitung jumlah variansi kedua kelas.
 \begin{equation}
 	\sigma_{\omega}^2 = \omega_1 \sigma_1^2 + \omega_2 \sigma_2^2
@@ -114,10 +114,23 @@ $a_i$ dan $b_i$ adalah atribut ke-$i$ dari $a$ dan $b$.
 
 Perhitungan jarak Euclidean digunakan untuk mendapatkan kelas-kelas warna yang bertetangga mengklasifikasikan pixel pada tahap klasifikasi ke dua.
 
-\section{Operasi Morfologi \emph{Convex Hull}}
+%\section{Operasi Morfologi \emph{Convex Hull}}
 
-\emph{Convex hull} $H$ dari himpunan sembarang $S$ adalah himpunan \emph{convex} terkecil yang mengandung semua elemen $S$. Himpunan $H$ merupakan himpunan \emph{convex} jika semua garis lurus yang menghubungkan elemen $A$ dan $B$ pada himpunan $H$ terletak seluruhnya pada $H$. Selisih himpunan $H - S$ disebut sebagai \emph{convex deficiency} dari $S$.
+%\emph{Convex hull} $H$ dari himpunan sembarang $S$ adalah himpunan \emph{convex} terkecil yang mengandung semua elemen $S$. Himpunan $H$ merupakan himpunan \emph{convex} jika semua garis lurus yang menghubungkan elemen $A$ dan $B$ pada himpunan $H$ terletak seluruhnya pada $H$. Selisih himpunan $H - S$ disebut sebagai \emph{convex deficiency} dari $S$.
 
-Pada metode klasifikasi deteksi cacat ini, \emph{convex deficiency} digunakan untuk mendeteksi cacat tekstur kulit jeruk.
+\section{Deteksi dan Pengukuran Prosentase Cacat Kulit Jeruk}
+
+%Pada metode klasifikasi yang diujicobakan ini, \emph{pixel} yang masuk pada kelas dengan intensitas rata-rata tertinggi dianggap sebagai daerah normal kulit jeruk. Daerah cacat ditemukan dari \emph{convex deficiency} kumpulan \emph{pixel} dengan intensitas tertinggi. Prosentase cacat merupakan perbandingan antara \emph{convex hull} dari area dengan \emph{pixel} normal dengan \emph{convex deficiency}.
+
+Cacat kulit jeruk terdeteksi sebagai lubang-lubang pada \emph{mask} yang dibentuk dari \emph{pixel} yang diklasifikasikan dalam dengan intensitas rata-rata tertinggi.
+
+\begin{align}
+	p_{cacat} = & \frac{L_{cacat}}{L_{normal} + L_{cacat}} \\
+	L_{normal} \approx & H \\
+	L_{cacat} \approx & H - H'
+\end{align}
+
+%$H'$ adalah \emph{convex hull} semua \emph{pixel} $H$ yang masuk dalam kelas dengan intensitas tertinggi.
+$H$ adalah kumpulan \emph{pixel} dengan kelas yang paling tinggi intensitasnya, $H'$ adalah hasil pengisian lubang. Cacat dideteksi dari selisih antara $H$ dan $H'$.
 
 \end{document}

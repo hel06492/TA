@@ -6,31 +6,30 @@
 
 \section{Pengolahan Data Awal}
 
-Data berupa foto jeruk yang telah diambil sesuai dengan langkah-langkah yang dijelaskan pada subbab 3.4.3.1. Data foto ini dikonversi menjadi citra \emph{grayscale}.
+Data berupa foto jeruk yang telah diambil sesuai dengan langkah-langkah yang dijelaskan pada subbab 3.4.3.1.
 %\subsection{Perbaikan Kontras}
 
-\includegraphics[width=8cm]{tex/choku3.jpg}
+\includegraphics[width=8cm]{../olahdata/proc/smoothcrop/DSC_2996.png}
 
 \section{Pengolahan Dengan Algoritma}
 
-\subsection{Deteksi Tepi}
+\subsection{Klasifikasi \emph{Pixel} Awal}
 
-Hasil transformasi dengan berbagai skala dan threshold untuk deteksi tepi.
+Hasil klasifikasi awal membagi jeruk menjadi 8 kelas berdasarkan segmentasi komponen-komponen warna primer dengan metode Otsu. Pada contoh ditunjukkan visualisasi hasil klasifikasi pada foto di atas, nilai-nilai intensitas asli \emph{pixel} digantikan dengan rata-rata intensitas kelas masing-masing \emph{pixel} tersebut. Tabel rata-rata intensitas menunjukkan bahwa seluruh kelas warna muncul pada citra yang diuji.
 
-\includegraphics[width=8cm]{tex/canny2.png}
+\includegraphics[width=8cm]{../olahdata/proc/data/seg3a.png}
 
-Berdasarkan pengamatan maka skala=x menghasilkan tepi yang paling tajam.
+\subsubsection{Reklasifikasi \emph{Pixel}}
 
-Untuk tepi yang menunjukkan batas antara daerah cacat dengan daerah normal dilakukan \emph{thresholding} pada nilai \emph{magnitude of gradient}.
+Kelas-kelas \emph{pixel} selanjutnya disusun ulang berdasarkan jarak antarkelas yang dihitung dari \emph{mean squared distance} rata-rata intensitas. Kelas yang saling bertetangga digabungkan kemudian rata-rata intensitas baru dihitung untuk tiap kelas. \emph{Pixel} pada citra asli diklasifikasi ulang berdasarkan jarak terdekat dari nilai rata-rata intensitas dengan perhitungan \emph{sum squared distance}. Gambar di bawah menunjukkan hasil klasifikasi ulang, nilai intensitas asli tiap \emph{pixel} diganti dengan rata-rata intensitas kelas.
 
-(Hasil setelah threshold)
+\subsection{Operasi Morfologi}
 
-%\includegraphics[width=8cm]{tex/canny3.png}
-\includegraphics[width=8cm]{tex/canny0708.png}
+Dari matriks data klasifikasi diambil titik-titik \emph{pixel} dengan kelas tertinggi sebagai sebuah citra biner yang menunjukkan bagian teksur normal. Operasi morfologi pengisian lubang dilakukan atas citra biner ini lalu diambil selisihnya untuk mendeteksi bagian-bagian cacat.
 
-\subsubsection{Penentuan Region}
-
-Selanjutnya dilakukan operasi \emph{flood fill}. Diambil satu titik pada tiap daerah yang dibatasi oleh tepi, jika titik tersebut mempunyai nilai intensitas permukaan tidak normal, lakukan flood fill. Hasil akhir tahap ini adalah mask yang menunjukkan daerah-daerah cacat pada kulit jeruk.
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3normal.png}
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3filled.png}
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
 
 \section{Interpretasi Hasil}
 
