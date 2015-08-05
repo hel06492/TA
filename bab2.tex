@@ -16,7 +16,7 @@ Beberapa penelitian memfokuskan pada deteksi cacat bentuk atau tekstur secara vi
 
 \subsection{Navel Orange Blemish Identification for Quality Grading System}
 
-Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat.
+Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat.\cite{liu}
 
 Sistem deteksi cacat berusaha meniru persepsi manusia yang membandingkan warna secara relatif dengan warna sekeliling.
 
@@ -126,11 +126,25 @@ Cacat kulit jeruk terdeteksi sebagai lubang-lubang pada \emph{mask} yang dibentu
 
 \begin{align}
 	p_{cacat} = & \frac{L_{cacat}}{L_{normal} + L_{cacat}} \\
-	L_{normal} \approx & H \\
-	L_{cacat} \approx & H - H'
+	L_{normal} \approx & Luas(H) \\
+	L_{cacat} \approx & Luas(H - H)'
 \end{align}
 
 %$H'$ adalah \emph{convex hull} semua \emph{pixel} $H$ yang masuk dalam kelas dengan intensitas tertinggi.
 $H$ adalah kumpulan \emph{pixel} dengan kelas yang paling tinggi intensitasnya, $H'$ adalah hasil pengisian lubang. Cacat dideteksi dari selisih antara $H$ dan $H'$.
+
+\section{Akurasi Deteksi}
+
+Akurasi deteksi cacat akan diukur dari parameter presisi, \emph{recall} dan akurasi statistik jumlah \emph{pixel} daerah cacat dan daerah normal.
+
+\includegraphics[width=8cm]{tex/conf.png}
+
+Selain itu ditambahkan lagi ukuran kemampuan deteksi yang dirumuskan sebagai perbandingan antara luas daerah yang dapat diproses dari tiap citra jeruk dengan luas keseluruhan objek jeruk yang tampak.
+
+\begin{equation}
+	deteksi = \frac{Luas(H')}{\sum_{kelas>1}^n Luas(M_{kelas})}
+\end{equation}
+
+$H'$ merupakan hasil pengisian lubang yang menunjukkan bagian yang dapat diproses, $M_{kelas}$ merupakan mask hasil klasifikasi akhir jeruk.
 
 \end{document}

@@ -23,6 +23,8 @@ Hasil klasifikasi awal membagi jeruk menjadi 8 kelas berdasarkan segmentasi komp
 
 Kelas-kelas \emph{pixel} selanjutnya disusun ulang berdasarkan jarak antarkelas yang dihitung dari \emph{mean squared distance} rata-rata intensitas. Kelas yang saling bertetangga digabungkan kemudian rata-rata intensitas baru dihitung untuk tiap kelas. \emph{Pixel} pada citra asli diklasifikasi ulang berdasarkan jarak terdekat dari nilai rata-rata intensitas dengan perhitungan \emph{sum squared distance}. Gambar di bawah menunjukkan hasil klasifikasi ulang, nilai intensitas asli tiap \emph{pixel} diganti dengan rata-rata intensitas kelas.
 
+\includegraphics[width=8cm]{../olahdata/proc/data/seg3b.png}
+
 \subsection{Operasi Morfologi}
 
 Dari matriks data klasifikasi diambil titik-titik \emph{pixel} dengan kelas tertinggi sebagai sebuah citra biner yang menunjukkan bagian teksur normal. Operasi morfologi pengisian lubang dilakukan atas citra biner ini lalu diambil selisihnya untuk mendeteksi bagian-bagian cacat.
@@ -31,9 +33,23 @@ Dari matriks data klasifikasi diambil titik-titik \emph{pixel} dengan kelas tert
 \includegraphics[width=4cm]{../olahdata/proc/data/mask3filled.png}
 \includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
 
+\section{Perhitungan Luas Cacat dan Akurasi}
+
+Sebagai acuan akurasi deteksi, digunakan citra biner cacat tekstur kulit yang digambar secara manual dengan menggunakan perangkat \emph{fuzzy select} dan \emph{color select} pada aplikasi pengolah citra Gimp. Prosentase hasil deteksi dan akurasi ditunjukkan pada tabel di bawah.
+
+\includegraphics[width=10cm]{tex/comparison.png}
+%\begin{tabular}{|l|l|l|l|l|l|l|}
+%\hline
+%Berkas citra & \% deteksi otomatis & \% deteksi manual & Presisi & \emph{Recall} & Akurasi & \% luas yang diproses \\
+%\hline
+%\hline
+%\end{tabular}
+
 \section{Interpretasi Hasil}
 
-Data menunjukkan bahwa algoritma deteksi tepi Canny dapat menentukan batas-batas permukaan kulit jeruk yang cacat. Akurasi deteksi daerah cacat ditentukan oleh posisi daerah cacat yang mempengaruhi kontras citra kulit jeruk. Akurasi pada bagian \ldots adalah \ldots sementara untuk bagian \ldots adalah \ldots.
+Data menunjukkan bahwa metode deteksi menghasilkan hasil yang bervariasi, dengan akurasi tinggi, presisi yang cukup baik, namun \emph{recall} sangat rendah. Tingkat \emph{recall} yang rendah ini disebabkan karena hanya sebagian dari permukaan jeruk yang dapat dideteksi, dan terutama karena citra biner yang digunakan untuk referensi kurang akurat.
+
+Metode ini selain tidak dirancang untuk mendeteksi cacat pada bagian-bagian gelap pada tepi jeruk, juga tidak dapat mendeteksi cacat pada bagian tengah jeruk yang berkilap karena sorotan sumber cahaya. Perlu dilakukan penyesuaian pencahayaan untuk mengurangi atau menghindari munculnya kilap di tengah objek.
 
 %Karena metode yang digunakan mengacu pada tepi daerah cacat maka akurasi metode tidak diukur dari prosentase kesalahan luas cacat yang terdeteksi namun dari banyaknya daerah-daerah cacat yang terdeteksi dan ketepatan lokasi deteksi tersebut.
 
