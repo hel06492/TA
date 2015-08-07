@@ -59,12 +59,15 @@ Langkah-langkah penelitian yang harus dilakukan yaitu:
 \begin{enumerate}
 \item mengambil foto-foto jeruk dari berbagai kualitas, Untuk akurasi data maka pengambilan foto perlu dilakukan pada kondisi yang terkontrol.
 \item pengolahan awal foto
-\item klasifikasi jeruk
+\item perhitungan \emph{threshold} komponen warna
+\item klasifikasi \emph{pixel} awal
+\item pembuatan kelas baru
+\item klasifikasi \emph{pixel} akhir
 \item pembuatan \emph{mask} untuk menandai objek jeruk dan daerah-daerah cacat pada jeruk
 \item perhitungan luas daerah cacat pada permukaan kulit jeruk
 \end{enumerate}
 
-\subsubsection{Pengambilan Foto}
+\subsubsection{Pengambilan Foto} \label{photoshoot}
 
 Pengambilan foto dilakukan dengan perlengkapan-perlengkapan berikut
 
@@ -83,11 +86,25 @@ Pengambilan foto diulang dua kali dengan objek diputar 180$^o$ untuk mengambil g
 
 \subsubsection{Pengolahan Awal Foto}
 
-Pada tahap pengolahan awal ukuran dan resolusi foto diperkecil menjadi 72dpi dan ukuran 800x800 \emph{pixel} untuk mengurangi beban pemrosesan sistem. Karena lingkungan pengambilan foto yang kurang ideal maka diperlukan penyuntingan manual gambar untuk menghilangkan latar belakang dan objek selain jeruk.
+Pada tahap pengolahan awal ukuran dan resolusi foto diperkecil menjadi 72dpi dan ukuran 800x800 \emph{pixel} untuk mengurangi beban pemrosesan sistem. Karena lingkungan pengambilan foto yang kurang ideal maka diperlukan penyuntingan manual gambar untuk menghilangkan latar belakang dan objek selain jeruk. Hasil penyuntingan disimpan dalam format PNG.
 
-\subsubsection{Klasifikasi Pixel}
+\subsubsection{\emph{Thresholding}}
 
-Pada citra jeruk dilakukan klasifikasi pixel sesuai dengan metode yang dijelaskan di Bab II. Hasil yang didapatkan adalah matriks angka integer yang menunjukkan kelas-kelas untuk tiap pixel.
+Untuk tiap komponen warna dihitung nilai \emph{threshold} dengan metode Otsu. Nilai \emph{threshold} ini digunakan pada proses klasifikasi awal \emph{pixel}.
+
+\subsubsection{Klasifikasi \emph{Pixel} Awal}
+
+Pada citra jeruk dilakukan klasifikasi \emph{pixel} awal berdasarkan perbandingan nilai komponen warna \emph{pixel} dengan hasil \emph{threshold}. Hasil yang didapatkan adalah matriks angka integer yang menunjukkan kelas-kelas untuk tiap pixel. Nilai intensitas rata-rata untuk tiap kelas dihitung untuk pengukuran jarak antarkelas.
+
+\subsubsection{Pembuatan Kelas Baru}
+
+Jarak antarkelas diukur dari rata-rata intensitas tiap komponen warna masing-masing kelas. Kelas-kelas yang bertetangga digabungkan dan kelas yang tidak muncul dihilangkan. Untuk setiap kelas baru dihitung nilai rata-rata intensitasnya.
+
+\subsubsection{Klasifikasi \emph{Pixel} Akhir}
+
+Untuk setiap kelas baru yang dihasilkan dicari nilai rata-rata intensitas yang baru. Nilai rata-rata intensitas ini merupakan titik-titik pusat kelas.
+
+\emph{Pixel} foto diklasifikasikan ke dalam kelas dengan jarak pusat terdekat. Hasil yang didapat dari langkah ini adalah matriks integer yang berisi kelas-kelas setiap \emph{pixel}.
 
 \subsubsection{Pembuatan \emph{Mask}}
 
@@ -95,7 +112,7 @@ Dari matriks kelas pixel titik-titik dengan nilai tertinggi diberi nilai 1 sedan
 
 Untuk mendapatkan daerah cacat, dibuat sebuah \emph{mask} $T'$ dengan cara menambal lubang pada citra biner dengan algoritma \emph{convex hull}. Daerah cacat didapatkan dari selisih antara \emph{mask} $T'$ dan citra biner $T$. Langkah ini tidak mendeteksi cacat pada keseluruhan sisi jeruk yang ditampilkan pada citra, bagian tepi jeruk dengan intensitas cahaya lebih rendah dihapus dari $T$.
 
-\subsection{Penghitungan Luas Daerah Cacat}
+\subsubsection{Penghitungan Luas Daerah Cacat}
 
 Luas daerah cacat diperkirakan dari prosentase jumlah pixel cacat yang terdeteksi terhadap jumlah pixel \emph{mask} hasil operasi penutupan lubang. Kualitas jeruk dapat ditentukan berdasarkan prosentase cacat sesuai dengan standard SNI.
 

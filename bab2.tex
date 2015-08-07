@@ -70,7 +70,23 @@ Berikut ini adalah pengertian computer vision menurut beberapa pakar
 
 Boyle dan Thomas mengatakan bahwa computer vision lebih daripada pengenalan, computer vision melakukan operasi “low level processing” sebagai algoritma image processing yang murni. Mereka juga yang menggolongkan image processing ke dalam computer vision.
 
-\section{\emph{Nearest Neighbor Search}}
+\section{Standard Kualitas Jeruk Menurut SNI 3165-2009}
+
+SNI telah menetapkan standard kualitas untuk buah jeruk keprok (Citrus sinensis) dalam SNI 3165-2009[3]. Standard ini diberlakukan bagi buah jeruk keprok yang dipasarkan untuk konsumsi langsung (bukan olahan atau bahan baku industri). Standard ini meliputi standard minimum, ketentuan kematangan, pengemasan, pelabelan, higienis, cemaran logam berat dan residu pestisida. Setelah memenuhi standard minimum tersebut, jeruk dapat diklasifikasi mutu dan ukurannya dengan batas-batas toleransi untuk tiap kelas mutu.\cite{sni}
+
+Berdasarkan standard SNI tersebut, buah jeruk keprok dibagi menjadi tiga kelas:
+
+\begin{description}
+\item [Kelas super] Jeruk keprok bermutu paling baik (super) mencerminkan ciri varietas/tipe komersial, bebas dari kerusakan kecuali kerusakan sangat kecil
+\item [Kelas A] Jeruk keprok bermutu baik yaitu mencerminkan ciri varietas/tipe komersial, dengan kerusakan kecil. Total area yang mengalami penyimpangan dan cacat maksimum 10\% total luas permukaan buah dan penyimpangan tersebut tidak boleh mempengaruhi mutu daging buah.
+\item [Kelas B] Sama seperti Kelas A dengan toleransi cacat maksimum 15\% dari total luas permukaan buah.
+\end{description}
+
+\section{Teori Pendukung}
+
+Metode yang digunakan untuk mendeteksi cacat adalah klasifikasi \emph{pixel} berdasarkan jarak, dengan metode Otsu untuk klasifikasi awal \emph{pixel} yang akan digunakan dalam penentuan titik awal pusat \emph{cluster}. Metode ini dipilih karena tidak membutuhkan \emph{training set} sehingga dapat diterapkan untuk data dalam jumlah terbatas.
+
+\subsection{\emph{Nearest Neighbor Search}}
 
 \emph{Nearest Neighbor Search} (NNS) adalah optimisasi untuk menemukan titik data yang paling mirip. Ukuran kesamaan antara titik-titik data dengan $n$-atribut dapat dideskripsikan dalam fungsi ketidaksamaan \emph{(dissimilarity function)}.\cite{knuth} Pada umumnya data dimodelkan sebagai titik-titik pada ruang vektor dimensi-$n$. Salah satu perhitungan yang digunakan untuk mengukur ketidaksamaan antardata adalah rumus jarak Euclid.
 
@@ -91,13 +107,27 @@ Untuk keperluan klasifikasi, tiap kelas data diwakili oleh sebuah titik pusat \e
 
 Perhitungan jarak Euclidean digunakan untuk mengklasifikasikan \emph{pixel} pada citra jeruk untuk deteksi daerah cacat. Tiap \emph{pixel} diukur jaraknya dari nilai intensitas rata-rata tiap kelas.
 
-\section{Metode Otsu}
+\subsection{Sistem Warna RGB}
+Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang dalam koordinat tersebut dengan tiap warna direpresentasikan sebagai sebuah titik. Sistem warna RGB memodelkan semua warna sebagai kombinasi tiga warna primer yaitu merah (R), hijau (G) dan biru (B) dalam berbagai intensitas. Dalam model ini, sebuah koordinat kartesius 3-dimensi menunjukkan besarnya intensitas tiap komponen warna. Warna-warna digambarkan sebagai titik-titik di dalam sebuah kubus yang meliputi seluruh kombinasi nilai ketiga komponen, setiap warna dideskripsikan dengan vektor dari titik asal. Warna hitam terletak di titik asal koordinat, dan warna putih di sudut terjauh dari titik asal.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{tex/rgb-colourcube.png}
+\caption{Kubus Model Warna RGB}
+\end{figure}
+
+\emph{Pixel} pada citra digital merupakan kombinasi tiga nilai intensitas komponen warna primer RGB, maka tiap \emph{pixel} dapat dilihat sebagi titik-titik data pada koordinat kartesius 3-dimensi dari sistem warna RGB. Sebagaimana titik pada ruang vektor lainnya, ukuran metrik fungsi ketidaksamaan berlaku untuk data \emph{pixel} RGB, sehingga klasifikasi \emph{nearest neighbor} dapat diterapkan.
+
+
+\subsection{Metode Otsu}
 
 Metode segmentasi Otsu digunakan untuk memisahkan pixel latar belakang dengan pixel objek. Algoritma Otsu membagi data histogram menjadi dua kelas dengan mencari nilai ambang yang memaksimumkan selisih rata-rata data antarkelas, dengan demikian memperkecil selisih rata-rata data dalam satu kelas. Perhitungan tersebut diformulasikan sebagai berikut
 
 \begin{equation}
 	\sigma_{\omega}^2 (t) = \omega_1 (t) \sigma_{\omega}^2 (t) + \omega_2 (t) \sigma_{\omega}^2 (t)
 \end{equation}
+
+Nilai yang dihasilkan \emph{thresholding} digunakan pada tahap klasifikasi awal \emph{pixel} ke dalam kelas-kelas warna.
 
 Algoritma secara umum
 \begin{enumerate}
@@ -128,20 +158,102 @@ Algoritma secara umum
 \item Nilai \emph{threshold} optimum adalah yang menghasilkan nilai $\sigma_{\omega}^2$ minimum.
 \end{enumerate}
 
-Operasi \emph{thresholding} ini digunakan pada tahap klasifikasi awal \emph{pixel} ke dalam kelas-kelas warna.
+Berikut ini ilustrasi perhitungan metode Otsu pada citra 3-bit berukuran 6x6.
+
+\begin{equation*}
+	m = \begin{bmatrix}
+		1 & 6 & 0 & 3 & 7 & 6 \\
+		2 & 2 & 1 & 0 & 5 & 5 \\
+		1 & 1 & 4 & 7 & 6 & 3 \\
+		5 & 5 & 6 & 3 & 2 & 4 \\
+		2 & 2 & 1 & 1 & 2 & 3 \\
+		1 & 2 & 1 & 1 & 3 & 4
+	\end{bmatrix}
+\end{equation*}
+
+\begin{enumerate}
+
+\item Histogram citra \\
+%\begin{table}
+%\centering
+\begin{tabular}{|l|l|}
+\hline
+Intensitas & Jumlah \emph{pixel} \\
+\hline
+0 & 2 \\
+1 & 9 \\
+2 & 7 \\
+3 & 5 \\
+4 & 3 \\
+5 & 4 \\
+6 & 4 \\
+7 & 2 \\
+\hline
+\end{tabular}
+%\end{table}
+
+\item Probabilitas nilai \emph{grayscale} $p_i$ \\
+%\begin{table}
+%\centering
+\begin{tabular}{|l|l|l|}
+\hline
+Intensitas & Jumlah \emph{pixel} & $p_i$ \\
+\hline
+0 & 2 & 0.056 \\
+1 & 9 & 0.250 \\
+2 & 7 & 0.194 \\
+3 & 5 & 0.139 \\
+4 & 3 & 0.083 \\
+5 & 4 & 0.111 \\
+6 & 4 & 0.111 \\
+7 & 2 & 0.056 \\
+\hline
+\end{tabular}
+%\end{table}
+
+\item Probabilitas kelas data histogram $\omega_1$ dan $\omega_2$ \\
+%\begin{table}
+%\centering
+\begin{tabular}{|l|l|l|}
+\hline
+$t$ & $\omega_1$ & $\omega_2$ \\
+\hline
+0 &  0.056 & 0.944 \\
+1 &  0.306 & 0.694 \\
+2 &  0.500 & 0.500 \\
+3 &  0.639 & 0.361 \\
+4 &  0.722 & 0.278 \\
+5 &  0.833 & 0.167 \\
+6 &  0.944 & 0.056 \\
+7 &  1.000 & 0.000 \\
+\hline
+\end{tabular}
+%\end{table}
+
+\item Variansi kelas $\sigma_1$, $\sigma_2$ dan jumlah bobot variansi kelas $\sigma_1 \omega_1$, $\sigma_2 \omega_2$ \\
+%\begin{table}
+%\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+$t$ & $\sigma_1$ & $\sigma_2$ & $\omega_1 \sigma_1$ & $\omega_2 \sigma_2$ & $\omega_1 \sigma_1 + \omega_2 \sigma_2$ \\
+\hline
+1 & 0.000 & 9.000 & 0.000 & 9.529 & 9.529 \\
+2 & 0.563 & 3.063 & 1.841 & 4.410 & 6.251 \\
+3 & 0.892 & 0.003 & 1.784 & 0.006 & 1.790 \\
+4 & 2.596 & 1.929 & 4.063 & 5.342 & 9.405 \\
+5 & 4.225 & 8.670 & 5.850 & 31.211 & 37.062 \\
+6 & 5.707 & 21.262 & 6.848 & 127.574 & 134.422 \\
+7 & 9.000 & 36.000 & 9.529 & 48.000 & 657.529 \\
+\hline
+\end{tabular}
+%\end{table}
+
+Nilai jumlah variansi kedua kelas adalah minimum untuk $t=3$, dengan demikian nilai \emph{threshold} optimum untuk citra di atas adalah $t=3$.
+
+\end{enumerate}
+
 
 \section{Metode Klasifikasi \emph{Pixel} untuk Citra Jeruk}
-
-\subsection{Sistem Warna RGB}
-Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang dalam koordinat tersebut dengan tiap warna direpresentasikan sebagai sebuah titik. Sistem warna RGB memodelkan semua warna sebagai kombinasi tiga warna primer yaitu merah (R), hijau (G) dan biru (B) dalam berbagai intensitas. Dalam model ini, sebuah koordinat kartesius 3-dimensi menunjukkan besarnya intensitas tiap komponen warna. Warna-warna digambarkan sebagai titik-titik di dalam sebuah kubus yang meliputi seluruh kombinasi nilai ketiga komponen, setiap warna dideskripsikan dengan vektor dari titik asal. Warna hitam terletak di titik asal koordinat, dan warna putih di sudut terjauh dari titik asal.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=10cm]{tex/rgb-colourcube.png}
-\caption{Kubus Model Warna RGB}
-\end{figure}
-
-\emph{Pixel} pada citra digital merupakan kombinasi tiga nilai intensitas komponen warna primer RGB, maka tiap \emph{pixel} dapat dilihat sebagi titik-titik data pada koordinat kartesius 3-dimensi dari sistem warna RGB. Sebagaimana titik pada ruang vektor lainnya, ukuran metrik fungsi ketidaksamaan berlaku untuk data \emph{pixel} RGB, sehingga klasifikasi \emph{nearest neighbor} dapat diterapkan.
 
 \subsection{Klasifikasi Awal dengan Kelas Warna}
 Salah satu problem dalam klasifikasi \emph{nearest neighbor} adalah penentuan pusat \emph{cluster} sebagai acuan. Metode standard klasifikasi menentukan pusat \emph{cluster} secara iteratif dari hasil klasifikasi titik-titik pada langkah sebelumnya sampai tercapai konvergensi. Penelitian ini menggunakan pembagian kelas warna seperti pada tabel \ref{table:colorclass} untuk mendapatkan titik-titik awal \emph{cluster}.
@@ -197,7 +309,15 @@ ssd(p,k) = \sqrt{\frac{\sum_{r,g,b} (\mu(k) - p)^2}{3}}
 
 \section{Deteksi dan Pengukuran Prosentase Cacat Kulit Jeruk}
 
-Cacat kulit jeruk terdeteksi sebagai lubang-lubang pada \emph{mask} yang dibentuk dari \emph{pixel} yang diklasifikasikan dalam dengan intensitas rata-rata tertinggi.
+%\subsection{Pembentukan \emph{Mask}}
+
+\emph{Pixel} yang diklasifikasikan dalam kelas dengan rata-rata intensitas tertinggi merupakan daerah normal pada kulit jeruk. Untuk menandainya dibuat citra biner dari matriks kelas \emph{pixel}, kelas tertinggi diberi nilai 1 dan sisanya diberi nilai 0.
+
+%\subsection{Operasi \emph{Hole Filling}}
+
+Penandaan daerah cacat memerlukan penentuan seluruh daerah jeruk yang bisa diproses dengan metode ini. Daerah tepi dengan kelas yang intensitasnya lebih rendah tidak dapat diproses karena perbedaan perbandingan nilai intensitas antara daerah normal dan daerah cacat. Bagian tepi tersebut tidak dimasukkan ke dalam perhitungan.
+
+Untuk mendapatkan seluruh daerah yang tercakup pemrosesan maka dilakukan operasi morfologis \emph{hole filling} pada \emph{mask} daerah normal.
 
 \begin{align}
 	p_{cacat} = & \frac{L_{cacat}}{L_{normal} + L_{cacat}} \\
