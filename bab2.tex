@@ -14,6 +14,14 @@ Makalah ini\cite{brosnan} membahas berbagai penelitian di bidang computer vision
 
 Beberapa penelitian memfokuskan pada deteksi cacat bentuk atau tekstur secara visual. Ekspansi Fourier dapat mendeteksi bentuk kultivar apel dengan kesuksesan 90\%.
 
+\subsection{Identifikasi Kematangan Buah Tomat Menggunakan Metoda \emph{Backpropagation}}
+
+Penelitian ini mengidentifikasi kematangan buah tomat melalui pemrosesan data histogram citra dengan jaringan syaraf tiruan (JST). Metode JST yang digunakan adalah \emph{backpropagation} dengan 3 unit input untuk komponen warna RGB, 4 \emph{hidden layer} dan 3 unit output. Dari input nilai histogram ternormalisasi dihasilkan 3 target output yaitu buah masak (1 1 1), setengah masak (0 1 0) dan buah muda (0 0 0).\cite{derisma}
+
+JST \emph{backpropagation} mengenali pola melalui pelatihan dengan data \emph{training} dengan tiga \emph{sample} untuk masing-masing target output (3 \emph{sample} buah matang, 3 \emph{sample} buah mentah dan 3 \emph{sample} buah setengah matang). Pelatihan dilakukan sebanyak 50000 kali untuk mendapatkan nilai bobot yang akan digunakan untuk mengidentifikasi tingkat kematangan buah tomat.
+
+Uji identifikasi dilakukan terhadap 20 data dari masing-masing tipe target. Sistem berhasil mengidentifikasi 85\% buah matang, 45\% buah mentah dan 85\% buah setengah matang. Pengaruh pencahayaan menyebabkan identifikasi buah matang lebih akurat daripada buah mentah.
+
 \subsection{Navel Orange Blemish Identification for Quality Grading System}
 
 Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat.\cite{liu}
@@ -24,7 +32,7 @@ Langkah pertama deteksi adalah dengan menggolongkan jeruk berdasarkan kematangan
 
 Klasifikasi awal dilakukan pada warna-warna kulit jeruk berdasarkan nilai komponen R, G dan B pada tiap pixel. Nilai yang kurang dari ambang batas berdasarkan algoritma Otsu dianggap tidak ada pada pixel. Berdasarkan kombinasi warna primer, tiap pixel digolongkan menjadi satu dari delapan jenis warna.
 
-\begin{table}
+\begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -276,25 +284,110 @@ Tiap komponen warna diberi bobot sedemikian rupa sehingga tiap kelas warna disim
 
 Selanjutnya tiap \emph{pixel} pada citra disubstitusikan dengan bilangan integer kelasnya sehingga untuk tiap citra yang diolah didapatkan matriks integer seukuran citra asli yang memuat data kelas-kelas \emph{pixel} pada citra.
 
+Contoh operasi klasifikasi awal untuk citra RGB 8-bit berukuran 3x3, nilai \emph{threshold} $R=80$, $G=70$, $B=40$.
+
+\begin{align*}
+M_R = \begin{bmatrix}
+10 & 80 & 30 \\
+95 & 60 & 121 \\
+40 & 87 & 103
+\end{bmatrix} 
+M_G = \begin{bmatrix}
+11 & 68 & 12 \\
+55 & 94 & 111 \\
+72 & 71 & 101
+\end{bmatrix} 
+M_B = \begin{bmatrix}
+2 & 28 & 1 \\
+42 & 70 & 93 \\
+35 & 33 & 70
+\end{bmatrix}
+\end{align*}
+
+\begin{align*}
+K & = 4 \begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+\end{bmatrix} +
+2 \begin{bmatrix}
+0 & 0 & 0 \\
+0 & 1 & 1 \\
+1 & 1 & 1
+\end{bmatrix} +
+\begin{bmatrix}
+0 & 0 & 0 \\
+1 & 1 & 1 \\
+0 & 0 & 1
+\end{bmatrix} +
+\begin{bmatrix}
+1 & 1 & 1 \\
+1 & 1 & 1 \\
+1 & 1 & 1
+\end{bmatrix} \\
+& = \begin{bmatrix}
+1 & 5 & 1 \\
+6 & 4 & 8 \\
+3 & 7 & 8
+\end{bmatrix} 
+\end{align*}
+
 \subsection{Pembuatan Kelas Baru}
 
 Kelas-kelas yang muncul di klasifikasi awal perlu disusun ulang untuk menggabungkan kelas-kelas yang berdekatan nilainya dan menghapus kelas yang tidak muncul pada citra. Penggabungan kelas dilakukan berdasarkan antara pusat-pusat kelas yang dihitung dari rata-rata intensitas kelas pada tiap komponen warna.
 
 Rata-rata intensitas kelas
 \begin{equation}
-	\mu_{r,g,b}(k) = \frac{\sum_k p{r,g,b}}{n_k}
+	\mu_{R,G,B}(k) = \frac{\sum_k p{R,G,B}}{n_k}
 \end{equation}
 
 Jarak antarkelas
 \begin{equation}
-	d_{a,b} = \sqrt{\frac{\sum_{r,g,b} (\mu(a) - \mu(b))^2}{3}}
+	d_{a,b} = \sqrt{\frac{\sum_{R,G,B} (\mu(a) - \mu(b))^2}{3}}
 \end{equation}
 
-Dari jarak antarkelas didapatkan tetangga untuk masing-masing kelas, yaitu kelas dengan jarak terdekat. Dua kelas yang saling bertetangga digabungkan dan rata-ratanya dihitung ulang. Gambar \ref{fig:neighborhood} menunjukkan ilustrasi ketetanggaan antarkelas dan kelas-kelas baru hasil penyusunan ulang.
+Contoh
+\vskip 1ex
+\begin{tabular}{|l|l|l|l|}
+\hline
+Kelas & $\mu_R$ & $\mu_G$ & $\mu_B$ \\
+\hline
+A & 60 & 60 & 40 \\
+B & 20 & 50 & 10 \\
+\hline
+\end{tabular}
+
+\begin{align*}
+d_{A,B} & = \sqrt{\frac{(60-20)^2 + (60-50)^2 + (40-10)^2}{3}} \\
+& =  \sqrt{\frac{1600 + 100 + 900}{3}} \\
+& = 50.99
+\end{align*}
+
+Dari jarak antarkelas didapatkan tetangga untuk masing-masing kelas, yaitu kelas dengan jarak terdekat. Dua kelas yang saling bertetangga digabungkan dan rata-ratanya dihitung ulang. Tabel \ref{table:dtx1} dan gambar \ref{fig:neighborhood} menunjukkan ilustrasi ketetanggaan antarkelas dan kelas-kelas baru hasil penyusunan ulang.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+Kelas & K1 & K2 & K3 & K4 & K5 & K6 & K7 & K8 \\
+\hline
+K1 & -- & 49.07 & 50.35 & 57.28 & 51.15 & 59.82 & 94.55 & 110.60 \\
+K2 & 49.07 & -- & 19.95 & 8.51 & 14.51 & 11.02 & 55.70 & 62.96 \\
+K3 & 50.35 & 19.95 & -- & 20.74 & 7.64 & 25.36 & 44.70 & 62.65 \\
+K4 & 57.28 & 8.51 & 20.74 & -- & 15.26 & 5.59 & 49.35 & 54.68 \\
+K5 & 51.15 & 14.51 & 7.64 & 15.26 & -- & 19.00 & 45.47 & 59.98 \\
+K6 & 59.82 & 11.02 & 25.36 & 5.59 & 19.00 & -- & 50.90 & 53.41 \\
+K7 & 94.55 & 55.70 & 44.70 & 49.35 & 45.47 & 50.90 & -- & 34.19 \\
+K8 & 110.60 & 62.96 & 62.65 & 54.68 & 59.98 & 53.41 & 34.19 & -- \\
+\hline
+\end{tabular}
+\caption{Contoh matriks jarak antarkelas}
+\label{table:dtx1}
+\end{table}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=6cm]{tex/cmerge7.png}
+\includegraphics[width=7.5cm]{tex/cmerge7.png}
 \caption{Penggabungan Kelas}
 \label{fig:neighborhood}
 \end{figure}
@@ -311,7 +404,26 @@ ssd(p,k) = \sqrt{\frac{\sum_{r,g,b} (\mu(k) - p)^2}{3}}
 
 %\subsection{Pembentukan \emph{Mask}}
 
-\emph{Pixel} yang diklasifikasikan dalam kelas dengan rata-rata intensitas tertinggi merupakan daerah normal pada kulit jeruk. Untuk menandainya dibuat citra biner dari matriks kelas \emph{pixel}, kelas tertinggi diberi nilai 1 dan sisanya diberi nilai 0.
+\emph{Pixel} yang diklasifikasikan dalam kelas dengan rata-rata intensitas tertinggi merupakan daerah normal pada kulit jeruk. Untuk menandainya dilakukan operasi \emph{thresholding} pada matriks kelas \emph{pixel} dengan nilai kelas tertinggi sebagai nilai \emph{threshold}.
+
+Contoh pembentukan mask $M$ dari matriks kelas $K$ dengan kelas 5 sebagai kelas dengan rata-rata intensitas tertinggi.
+
+\begin{equation*}
+M  = \begin{bmatrix}
+1 & 1 & 1 & 1 & 1 \\
+1 & 5 & 5 & 5 & 1 \\
+1 & 5 & 1 & 5 & 1 \\
+1 & 4 & 5 & 3 & 1 \\
+1 & 1 & 1 & 1 & 1
+\end{bmatrix} \qquad 
+K  = \begin{bmatrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 \\
+0 & 1 & 0 & 1 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation*}
 
 %\subsection{Operasi \emph{Hole Filling}}
 
@@ -330,11 +442,17 @@ $H$ adalah kumpulan \emph{pixel} dengan kelas yang paling tinggi intensitasnya, 
 
 \section{Akurasi Deteksi}
 
-Akurasi deteksi cacat akan diukur dari parameter presisi, \emph{recall} dan akurasi statistik jumlah \emph{pixel} daerah cacat dan daerah normal.
+Akurasi deteksi cacat akan diukur dari parameter presisi, \emph{recall} dan akurasi statistik jumlah \emph{pixel} daerah cacat dan daerah normal. Hal-hal ini terkait dengan keberhasilan sistem dalam mengambil informasi yang dibutuhkan pengguna. Pada penelitian ini informasi yang dicari adalah \emph{pixel} dari daerah cacat.
 
 \includegraphics[width=8cm]{tex/conf.png}
 
-\emph{True positive} merupakan cacat yang berhasil dideteksi oleh algoritma, \emph{false positive} merupakan daerah normal yang ditandai sebagai cacat. \emph{True negative} merupakan daerah normal yang tidak ditandai sebagai cacat, \emph{false negative} merupakan daerah cacat yang tidak terdeteksi oleh algoritma.
+
+\begin{enumerate}
+\item \emph{True positive rate}: jumlah \emph{pixel} daerah cacat yang berhasil dideteksi oleh algoritma
+\item \emph{False positive rate}: jumlah \emph{pixel} daerah normal yang ditandai sebagai cacat.
+\item \emph{True negative rate}: jumlah \emph{pixel} daerah normal yang tidak ditandai sebagai cacat, 
+\item \emph{False negative rate}: jumlah \emph{pixel} daerah cacat yang tidak terdeteksi oleh algoritma.
+\end{enumerate}
 
 Selain itu ditambahkan lagi ukuran prosentase deteksi yang dirumuskan sebagai perbandingan antara luas daerah yang dapat diproses dari tiap citra jeruk dengan luas keseluruhan objek jeruk yang tampak. Prosentase deteksi ini tidak akan mencapai 100\% karena bagian tepi objek jeruk menerima lebih sedikit cahaya intensitas warnanya lebih rendah dan tidak terdeteksi sebagai kelas tertinggi (daerah normal).
 
