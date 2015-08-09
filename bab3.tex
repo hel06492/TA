@@ -86,11 +86,21 @@ Pengambilan foto diulang dua kali dengan objek diputar 180$^o$ untuk mengambil g
 
 \subsubsection{Pengolahan Awal Foto}
 
-Pada tahap pengolahan awal ukuran dan resolusi foto diperkecil menjadi 72dpi dan ukuran 800x800 \emph{pixel} untuk mengurangi beban pemrosesan sistem. Karena lingkungan pengambilan foto yang kurang ideal maka diperlukan penyuntingan manual gambar untuk menghilangkan latar belakang dan objek selain jeruk. Hasil penyuntingan disimpan dalam format PNG.
+Foto di-\emph{crop} dengan ukuran 2304x2304 \emph{pixel} untuk membuang bagian yang tidak diperlukan. Ukuran dan resolusi foto diperkecil menjadi 72dpi dan ukuran 800x800 \emph{pixel} untuk mengurangi beban pemrosesan sistem. Karena lingkungan pengambilan foto yang kurang ideal maka diperlukan penyuntingan manual gambar untuk menghilangkan latar belakang dan objek selain jeruk. Hasil penyuntingan disimpan dalam format PNG.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6cm]{tex/3005ori.jpg}
+
+\vskip 1cm
+\includegraphics[width=4cm]{../data/DSC_3005.JPG} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3005.png}
+\caption{Foto asli, foto hasil \emph{crop} dan \emph{resize}, foto yang sudah dibersihkan}
+\end{figure}
 
 \subsubsection{\emph{Thresholding}}
 
-Untuk tiap komponen warna dihitung nilai \emph{threshold} dengan metode Otsu. Nilai \emph{threshold} ini digunakan pada proses klasifikasi awal \emph{pixel}.
+Citra dipisahkan ke dalam tiap komponen warna RGB. Untuk tiap komponen warna dihitung nilai \emph{threshold} dengan metode Otsu. Nilai \emph{threshold} ini digunakan pada proses klasifikasi awal \emph{pixel}.
 
 \subsubsection{Klasifikasi \emph{Pixel} Awal}
 
@@ -108,12 +118,28 @@ Untuk setiap kelas baru yang dihasilkan dicari nilai rata-rata intensitas yang b
 
 \subsubsection{Pembuatan \emph{Mask}}
 
-Dari matriks kelas pixel titik-titik dengan nilai tertinggi diberi nilai 1 sedangkan sisanya diberi nilai 0. Langkah ini menghasilkan citra biner $T$, nilai 1 menunjukkan tekstur normal di bagian tengah jeruk. Lubang-lubang pada citra biner merupakan titik-titik yang digolongkan sebagai cacat.
+Dari matriks kelas pixel titik-titik \emph{thresholding} untuk mengambil \emph{pixel} yang diklasifikasikan ke kelas tertinggi. Langkah ini menghasilkan citra biner $T$, nilai 1 menunjukkan tekstur normal di bagian tengah jeruk. Lubang-lubang pada citra biner merupakan titik-titik yang digolongkan sebagai cacat. Gambar \ref{fig:highmask} merupakan contoh input dan output proses \emph{threshold}.
 
-Untuk mendapatkan daerah cacat, dibuat sebuah \emph{mask} $T'$ dengan cara menambal lubang pada citra biner dengan algoritma \emph{convex hull}. Daerah cacat didapatkan dari selisih antara \emph{mask} $T'$ dan citra biner $T$. Langkah ini tidak mendeteksi cacat pada keseluruhan sisi jeruk yang ditampilkan pada citra, bagian tepi jeruk dengan intensitas cahaya lebih rendah dihapus dari $T$.
+\begin{figure}[h]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3005.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/mask12normal.png}
+\caption{Contoh operasi \emph{thresholding} untuk mendapatkan lapisan kelas tertinggi.}
+\label{fig:highmask}
+\end{figure}
+
+Untuk mendapatkan daerah cacat, dibuat sebuah \emph{mask} $T'$ dengan cara menambal lubang pada citra biner dengan algoritma \emph{hole filling}. Daerah cacat didapatkan dari selisih antara \emph{mask} $T'$ dan citra biner $T$. Langkah ini tidak mendeteksi cacat pada keseluruhan sisi jeruk yang ditampilkan pada citra, bagian tepi jeruk dengan intensitas cahaya lebih rendah dihapus dari $T$. Gambar \ref{fig:holemask} menunjukkan contoh operasi pengisian lubang dan hasil deteksi.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/data/mask12filled.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/mask12blemish.png}
+\caption{Contoh operasi \emph{hole filling} diikuti dengan pencarian cacat dari selisih dengan \emph{mask} daerah normal.}
+\label{fig:holemask}
+\end{figure}
 
 \subsubsection{Penghitungan Luas Daerah Cacat}
 
-Luas daerah cacat diperkirakan dari prosentase jumlah pixel cacat yang terdeteksi terhadap jumlah pixel \emph{mask} hasil operasi penutupan lubang. Kualitas jeruk dapat ditentukan berdasarkan prosentase cacat sesuai dengan standard SNI.
+Luas daerah cacat dapat diperkirakan dari prosentase jumlah pixel cacat yang terdeteksi terhadap jumlah pixel \emph{mask} hasil operasi penutupan lubang. Kualitas jeruk dapat ditentukan berdasarkan prosentase cacat sesuai dengan standard SNI. Namun, untuk mendapatkan hasil perhitungan yang akurat objek perlu diputar untuk mendapatkan hasil deteksi pada daerah-daerah yang tidak ikut diproses.
 
 \end{document}

@@ -262,15 +262,37 @@ Nilai jumlah variansi kedua kelas adalah minimum untuk $t=3$, dengan demikian ni
 
 \subsection{Operasi Morfologi \emph{Hole Filling}}
 
-Lubang \emph{(hole)} didefinisikan sebagai daerah \emph{background} yang dikelilingi \emph{pixel} \emph{foreground} yang saling terhubung. Pengisian lubang dilakukan dengan menandai salah satu titik pada lubang kemudian melakukan dilasi kondisional secara iteratif.
+Lubang \emph{(hole)} didefinisikan sebagai daerah \emph{background} yang dikelilingi \emph{pixel} \emph{foreground} yang saling terhubung. Pengisian lubang dilakukan dengan menandai salah satu titik pada lubang kemudian melakukan dilasi kondisional atas \emph{structuring element} $B$ secara iteratif, dilasi dibatasi oleh irisan dengan komplemen citra biner yang diproses.
 
 \begin{equation}
 X_k = (X_{k-1} \oplus B) \cap A^c \qquad k=1,2,3,\ldots
+\label{eq:fill}
 \end{equation}
 
-Operasi dilakukan sampai $X_k = X_{k-1}$. Gambar .. menunjukkan contoh operasi pengisian lubang.
+Operasi diulangi sampai $X_k = X_{k-1}$. $X_k$ digabungkan dengan $A$ untuk mendapatkan citra hasil akhir.
+
+Berikut ini adalah contoh prosedur pengisian lubang.
+
+\begin{enumerate}
+\item Siapkan komplemen citra biner $A^c$ dari citra $A$.
+
+\includegraphics{tex/fill1.png}
+\item Siapkan \emph{structuring element} B
+
+\includegraphics{tex/fill2.png}
+\item Siapkan $X_0$ dengan satu titik awal di lokasi lubang untuk memulai pengisian lubang.
+
+\includegraphics{tex/fill3.png}
+\item Lakukan operasi sesuai persamaan \ref{eq:fill} secara berulang hingga lubang tertutup.
+\includegraphics{tex/fill4.png}
+\item Gabungkan $X_k$ dengan $A$
+
+\includegraphics{tex/fill5.png}
+\end{enumerate}
 
 \section{Metode Klasifikasi \emph{Pixel} untuk Citra Jeruk}
+
+Hasil klasifikasi \emph{pixel} membagi jeruk menjadi lapisan-lapisan rentang intensitas dari yang terendah hingga rentang tertinggi. Sesuai karakteristik penyinaran pada benda bulat, intensitas tertinggi akan berada di tengah jeruk dan intensitas-intensitas terendah di tepinya. Cacat mempunyai intensitas lebih rendah daripada daerah normal di sekitarnya. Diskontinuitas pada daerah kelas dengan intensitas tertinggi menandakan adanya cacat pada bagian itu.\cite{liu}
 
 \subsection{Klasifikasi Awal dengan Kelas Warna}
 Salah satu problem dalam klasifikasi \emph{nearest neighbor} adalah penentuan pusat \emph{cluster} sebagai acuan. Metode standard klasifikasi menentukan pusat \emph{cluster} secara iteratif dari hasil klasifikasi titik-titik pada langkah sebelumnya sampai tercapai konvergensi. Penelitian ini menggunakan pembagian kelas warna seperti pada tabel \ref{table:colorclass} untuk mendapatkan titik-titik awal \emph{cluster}.
