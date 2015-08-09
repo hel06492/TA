@@ -27,7 +27,7 @@ Foto jeruk diperkecil resolusinya dan disunting secara manual untuk menghilangka
 
 \subsection{\emph{Thresholding}}
 
-\emph{Thresholding} dengan metode Otsu diterapkan pada tiap komponen warna. Nilai \emph{threshold} untuk data contoh ditampilkan di tabel \ref{table:threshval}
+\emph{Thresholding} dengan metode Otsu diterapkan pada tiap komponen warna. Nilai \emph{threshold} untuk data contoh ditampilkan di tabel \ref{table:threshval}.
 
 \begin{table}[h]
 \centering
@@ -40,10 +40,23 @@ G & 79 \\
 B & 44 \\
 \hline
 \end{tabular}
-\caption{Hasil \emph{threshold} metode Otsu}
+\caption{Nilai \emph{threshold} metode Otsu}
 \label{table:threshval}
 \end{table}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=3.2cm]{tex/2996r.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{tex/2996g.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{tex/2996b.png}
+\vskip 1cm
+\includegraphics[width=3.2cm]{tex/2996rt.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{tex/2996gt.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{tex/2996bt.png}
+\caption{Hasil operasi \emph{threshold} pada komponen warna citra}
+\end{figure}
+
+Operasi \emph{threshold} menghasilkan tiga citra biner untuk masing-masing komponen warna. Klasifikasi dapat dilakukan ke \emph{pixel} data citra dengan menerapkan langsung \mbox{rumus} \ref{classcol} pada ketiga citra biner sehingga dihasilkan matriks integer yang menyimpan nilai kelas untuk data \emph{pixel} citra.
 
 \subsection{Klasifikasi \emph{Pixel} Awal}
 

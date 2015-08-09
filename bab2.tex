@@ -80,7 +80,7 @@ Boyle dan Thomas mengatakan bahwa computer vision lebih daripada pengenalan, com
 
 \section{Standard Kualitas Jeruk Menurut SNI 3165-2009}
 
-SNI telah menetapkan standard kualitas untuk buah jeruk keprok (Citrus sinensis) dalam SNI 3165-2009[3]. Standard ini diberlakukan bagi buah jeruk keprok yang dipasarkan untuk konsumsi langsung (bukan olahan atau bahan baku industri). Standard ini meliputi standard minimum, ketentuan kematangan, pengemasan, pelabelan, higienis, cemaran logam berat dan residu pestisida. Setelah memenuhi standard minimum tersebut, jeruk dapat diklasifikasi mutu dan ukurannya dengan batas-batas toleransi untuk tiap kelas mutu.\cite{sni}
+SNI telah menetapkan standard kualitas untuk buah jeruk keprok (\emph{Citrus sinensis}) dalam SNI 3165-2009[3]. Standard ini diberlakukan bagi buah jeruk keprok yang dipasarkan untuk konsumsi langsung (bukan olahan atau bahan baku industri). Standard ini meliputi standard minimum, ketentuan kematangan, pengemasan, pelabelan, higienis, cemaran logam berat dan residu pestisida. Setelah memenuhi standard minimum tersebut, jeruk dapat diklasifikasi mutu dan ukurannya dengan batas-batas toleransi untuk tiap kelas mutu.\cite{sni}
 
 Berdasarkan standard SNI tersebut, buah jeruk keprok dibagi menjadi tiga kelas:
 
@@ -311,6 +311,7 @@ Tiap komponen warna diberi bobot sedemikian rupa sehingga tiap kelas warna disim
 
 \begin{equation}
 	pixelClass(p) = 4 isColor(p,R) + 2 isColor(p,G) + isColor(p,B) + 1
+\label{classcol}
 \end{equation}
 
 Selanjutnya tiap \emph{pixel} pada citra disubstitusikan dengan bilangan integer kelasnya sehingga untuk tiap citra yang diolah didapatkan matriks integer seukuran citra asli yang memuat data kelas-kelas \emph{pixel} pada citra.
@@ -369,12 +370,14 @@ Kelas-kelas yang muncul di klasifikasi awal perlu disusun ulang untuk menggabung
 
 Rata-rata intensitas kelas
 \begin{equation}
-	\mu_{R,G,B}(k) = \frac{\sum_k p{R,G,B}}{n_k}
+	\mu_{R,G,B}(k) = \frac{\sum_k p_{R,G,B}}{n_k}
+\label{classavgeq}
 \end{equation}
 
 Jarak antarkelas
 \begin{equation}
 	d_{a,b} = \sqrt{\frac{\sum_{R,G,B} (\mu(a) - \mu(b))^2}{3}}
+\label{classavgdist}
 \end{equation}
 
 Contoh

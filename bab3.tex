@@ -61,6 +61,7 @@ Langkah-langkah penelitian yang harus dilakukan yaitu:
 \item pengolahan awal foto
 \item perhitungan \emph{threshold} komponen warna
 \item klasifikasi \emph{pixel} awal
+\item perhitungan rata-rata intensitas setiap kelas
 \item pembuatan kelas baru
 \item klasifikasi \emph{pixel} akhir
 \item pembuatan \emph{mask} untuk menandai objek jeruk dan daerah-daerah cacat pada jeruk
@@ -102,13 +103,35 @@ Foto di-\emph{crop} dengan ukuran 2304x2304 \emph{pixel} untuk membuang bagian y
 
 Citra dipisahkan ke dalam tiap komponen warna RGB. Untuk tiap komponen warna dihitung nilai \emph{threshold} dengan metode Otsu. Nilai \emph{threshold} ini digunakan pada proses klasifikasi awal \emph{pixel}.
 
+
 \subsubsection{Klasifikasi \emph{Pixel} Awal}
 
-Pada citra jeruk dilakukan klasifikasi \emph{pixel} awal berdasarkan perbandingan nilai komponen warna \emph{pixel} dengan hasil \emph{threshold}. Hasil yang didapatkan adalah matriks angka integer yang menunjukkan kelas-kelas untuk tiap pixel. Nilai intensitas rata-rata untuk tiap kelas dihitung untuk pengukuran jarak antarkelas.
+Pada citra jeruk dilakukan klasifikasi \emph{pixel} awal berdasarkan perbandingan nilai komponen warna \emph{pixel} dengan hasil \emph{threshold} sesuai rumus \ref{classcol}. Hasil yang didapatkan disimpan sebagai matriks angka integer yang menunjukkan kelas-kelas untuk tiap pixel. Tabel \ref{table:preclass3} menunjukkan contoh hasil klasifikasi awal.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\cline{1-6}
+\multirow{2}{*}{} & \multirow{2}{*}{Data} & \multicolumn{3}{l|}{\emph{Threshold}} & \multirow{2}{*}{Kelas} \\
+\cline{3-5}
+ & & $R=82$ & $G=79$ & $B=44$ & \\
+\cline{1-6}
+1 & $R=50, G=50, B=45$ & 0 & 0 & 1 & 2 \\
+2 & $R=10, G=11, B=2$ & 0 & 0 & 0 & 1 \\
+3 & $R=120, G=115, B=90$ & 1 & 1 & 1 & 7 \\
+\cline{1-6}
+\end{tabular}
+\caption{Contoh klasifikasi awal \emph{pixel}}
+\label{table:preclass3}
+\end{table}
+
+\subsubsection{Perhitungan Rata-Rata Intensitas Kelas dan Jarak Antarkelas}
+
+Rata-rata intensitas kelas dihitung dari nilai komponen warna dari semua \emph{pixel} yang masuk ke dalam kelas tersebut, dinyatakan dalam rumus \ref{classavgeq}. Nilai rata-rata tersebut digunakan untuk menghitung jarak antarkelas sesuai rumus \ref{classavgdist}.
 
 \subsubsection{Pembuatan Kelas Baru}
 
-Jarak antarkelas diukur dari rata-rata intensitas tiap komponen warna masing-masing kelas. Kelas-kelas yang bertetangga digabungkan dan kelas yang tidak muncul dihilangkan. Untuk setiap kelas baru dihitung nilai rata-rata intensitasnya.
+Berdasarkan jarak antarkelas dapat ditemukan kelas-kelas yang bertetangga. Dua buah kelas bertetangga jika keduanya merupakan kelas terdekat bagi kelas lainnya.
 
 \subsubsection{Klasifikasi \emph{Pixel} Akhir}
 
@@ -122,7 +145,7 @@ Dari matriks kelas pixel titik-titik \emph{thresholding} untuk mengambil \emph{p
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3005.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/seg12b.png} \qquad
 \includegraphics[width=4cm]{../olahdata/proc/data/mask12normal.png}
 \caption{Contoh operasi \emph{thresholding} untuk mendapatkan lapisan kelas tertinggi.}
 \label{fig:highmask}
