@@ -260,6 +260,15 @@ Nilai jumlah variansi kedua kelas adalah minimum untuk $t=3$, dengan demikian ni
 
 \end{enumerate}
 
+\subsection{Operasi Morfologi \emph{Hole Filling}}
+
+Lubang \emph{(hole)} didefinisikan sebagai daerah \emph{background} yang dikelilingi \emph{pixel} \emph{foreground} yang saling terhubung. Pengisian lubang dilakukan dengan menandai salah satu titik pada lubang kemudian melakukan dilasi kondisional secara iteratif.
+
+\begin{equation}
+X_k = (X_{k-1} \oplus B) \cap A^c \qquad k=1,2,3,\ldots
+\end{equation}
+
+Operasi dilakukan sampai $X_k = X_{k-1}$. Gambar .. menunjukkan contoh operasi pengisian lubang.
 
 \section{Metode Klasifikasi \emph{Pixel} untuk Citra Jeruk}
 
