@@ -14,7 +14,7 @@ Data berupa foto jeruk yang telah diambil sesuai dengan langkah-langkah yang dij
 
 \section{Pengolahan Data Awal}
 
-Foto jeruk diperkecil resolusinya dan disunting secara manual untuk menghilangkan objek latar belakang. Hasil pengolahan awal ditunjukkan pada gambar \ref{fig:imgedited}.
+Foto jeruk diperkecil resolusinya dan disunting secara manual untuk menghilangkan objek latar belakang. Hasil akhir pengolahan awal ditunjukkan pada gambar \ref{fig:imgedited}.
 
 \begin{figure}[h!]
 \centering
@@ -262,19 +262,65 @@ Prosentase permukaan yang dapat dideteksi.
 deteksi =\frac{221386}{271992} \ast 100\% = 82.72\%
 \end{equation*}
 
-Prosentase hasil deteksi dan akurasi dari semua data eksperimen ditunjukkan pada tabel di bawah.
+Prosentase hasil deteksi dan akurasi dari semua data eksperimen ditunjukkan pada tabel \ref{table:detrecap}.
 
-\begin{figure}[h!]
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=10cm]{tex/comparison.png}
+%\caption{Akurasi deteksi}
+%\end{figure}
+\begin{table}[h!]
 \centering
-\includegraphics[width=10cm]{tex/comparison.png}
-\caption{Akurasi deteksi}
-\end{figure}
-%\begin{tabular}{|l|l|l|l|l|l|l|}
-%\hline
-%Berkas citra & \% deteksi otomatis & \% deteksi manual & Presisi & \emph{Recall} & Akurasi & \% luas yang diproses \\
-%\hline
-%\hline
-%\end{tabular}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Berkas citra & $n$ \emph{pixel} normal & $n$ \emph{pixel} \emph{hole fill} & $n$ \emph{pixel} cacat & \% cacat \\
+\hline
+DSC\_2994.png&241788&243449&1661&0.6822784238 \\
+DSC\_2995.png&37995&38716&721&1.8622791611 \\
+DSC\_2996.png&221386&225001&3615&1.606659526 \\
+DSC\_2997.png&229222&230548&1326&0.5751513785 \\
+DSC\_2998.png&175995&182726&6731&3.6836574981 \\
+DSC\_2999.png&121087&130677&9590&7.3387053575 \\
+DSC\_3000.png&163142&169382&6240&3.6839805883 \\
+DSC\_3001.png&173986&176931&2945&1.6644906772 \\
+DSC\_3002.png&181115&184190&3075&1.6694717411 \\
+DSC\_3003.png&171486&173386&1900&1.0958208852 \\
+DSC\_3004.png&163276&166109&2833&1.7055066252 \\
+DSC\_3005.png&184366&186877&2511&1.3436645494 \\
+\hline
+\end{tabular}
+\caption{Hasil deteksi \emph{pixel} daerah cacat}
+\label{table:detrecap}
+\end{table}
+
+Perbandingan akurasi dengan hasil penandaan manual ditunjukkan pada tabel \ref{table:detconfuse}.
+
+\begin{table}[h!]
+\small
+\centering
+%\resizebox{0.9\textwidth
+\begin{tabular} {|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Luas total & Luas det.&  $TP$ & $FP$ & $TN$ & $FN$ & Presisi & Akurasi & \emph{Recall} & \% deteksi \\
+\hline
+300646&243449&503&1158&234702&64283&30.283&78.233&0.776&80.975 \\
+288910&38716&4&717&217481&70708&0.555&75.278&0.006&13.401 \\
+271992&225001&2731&884&231064&37313&75.546&85.957&6.820&82.723 \\
+271792&230548&1027&299&235938&34528&77.451&87.186&2.888&84.825 \\
+254135&182726&628&6103&152056&95348&9.330&60.080&0.654&71.901 \\
+252699&130677&6151&3439&86852&156257&64.140&36.804&3.787&51.713 \\
+241675&169382&5924&316&129974&105461&94.936&56.232&5.318&70.087 \\
+242394&176931&2378&567&148804&90645&80.747&62.370&2.556&72.993 \\
+262047&184190&2081&994&142149&116823&67.675&55.040&1.750&70.289 \\
+256038&173386&523&1377&130057&124081&27.526&51.000&0.420&67.719 \\
+257723&166109&2542&291&157311&97579&89.728&62.025&2.539&64.453 \\
+255593&186877&1816&695&173834&79248&72.322&68.723&2.240&73.115 \\
+\hline
+\end{tabular}
+\normalsize
+\caption{Akurasi dan luas deteksi hasil pemrosesan}
+\label{table:detconfuse}
+\end{table}
 
 \section{Interpretasi Hasil}
 

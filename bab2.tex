@@ -519,39 +519,43 @@ $H$ adalah kumpulan \emph{pixel} dengan kelas yang paling tinggi intensitasnya, 
 
 \section{Akurasi Deteksi}
 
-Akurasi deteksi cacat akan diukur dari parameter presisi, \emph{recall} dan akurasi statistik jumlah \emph{pixel} daerah cacat dan daerah normal. Hal-hal ini terkait dengan keberhasilan sistem dalam mengambil informasi yang dibutuhkan pengguna. Pada penelitian ini informasi yang dicari adalah \emph{pixel} dari daerah cacat.
+Akurasi deteksi cacat akan diukur dari parameter presisi, \emph{recall} dan akurasi statistik jumlah \emph{pixel} daerah cacat dan daerah normal. Hal-hal ini terkait dengan keberhasilan sistem dalam mengambil informasi yang dibutuhkan pengguna. Pada penelitian ini informasi yang dicari adalah \emph{pixel} dari daerah cacat. Akurasi sistem biasanya dihitung dengan \emph{confusion matrix} yang digambarkan pada gambar \ref{fig:confmatrix2}
 
-\includegraphics[width=8cm]{tex/conf.png}
-
-Jika diketahui citra biner $D_{proses}$ sebagai hasil deteksi cacat dari pengolahan data dan $D_{proses}^c$ komplemennya, citra biner $A$ sebagai hasil pengisian lubang, serta citra biner $D_{manual}$ sebagai penandaan cacat yang dibuat manual dan komplemen $D_{manual}^c$, persamaan-persamaan berikut dapat digunakan untuk mengambil keempat ukuran akurasi di atas.
-
-\begin{enumerate}
-\item \emph{True positive rate}: jumlah \emph{pixel} daerah cacat yang berhasil dideteksi oleh algoritma
-\begin{equation*}
-TP = \frac{n(D_{proses} \cap D_{manual} \cap A)}{n(A)} \nonumber \\
-\end{equation*}
-\item \emph{False positive rate}: jumlah \emph{pixel} daerah normal yang ditandai sebagai cacat.
-\begin{equation*}
-FP = \frac{n(D_{proses} \cap D_{manual}^c \cap A)}{n(A)} \nonumber \\
-\end{equation*}
-\item \emph{True negative rate}: jumlah \emph{pixel} daerah normal yang tidak ditandai sebagai cacat, 
-\begin{equation*}
-TN = \frac{n(D_{proses}^c \cap D_{manual}^c \cap A)}{n(A)} \nonumber \\
-\end{equation*}
-\item \emph{False negative rate}: jumlah \emph{pixel} daerah cacat yang tidak terdeteksi oleh algoritma.
-\begin{equation*}
-FN = \frac{n(D_{proses}^c \cap D_{manual} \cap A)}{n(A)}
-\end{equation*}
-\end{enumerate}
-
-
-
-Selain itu ditambahkan lagi ukuran prosentase deteksi yang dirumuskan sebagai perbandingan antara luas daerah yang dapat diproses dari tiap citra jeruk dengan luas keseluruhan objek jeruk yang tampak. Prosentase deteksi ini tidak akan mencapai 100\% karena bagian tepi objek jeruk menerima lebih sedikit cahaya intensitas warnanya lebih rendah dan tidak terdeteksi sebagai kelas tertinggi (daerah normal).
+Dalam pengukuran akurasi perlu dipertimbangkan batasan daerah yang diproses saat pendeteksian cacat karena proses pendeteksian tidak dilakukan untuk daerah tepi yang intensitasnya lebih rendah. Karena itu perlu ditambahkan lagi ukuran prosentase deteksi yang dirumuskan sebagai perbandingan antara luas daerah yang dapat diproses dari tiap citra jeruk dengan luas keseluruhan objek jeruk yang tampak. Prosentase deteksi ini tidak akan mencapai 100\% karena bagian tepi objek jeruk menerima lebih sedikit cahaya intensitas warnanya lebih rendah dan tidak terdeteksi sebagai kelas tertinggi (daerah normal).
 
 \begin{equation}
 	deteksi = \frac{Luas(H')}{\sum_{kelas>1}^n Luas(M_{kelas})}
 \end{equation}
 
 $H'$ merupakan hasil pengisian lubang yang menunjukkan bagian yang dapat diproses, $M_{kelas}$ merupakan mask hasil klasifikasi akhir jeruk.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=8cm]{tex/conf.png}
+\caption{\emph{Confusion matrix}}
+\label{fig:confmatrix2}
+\end{figure}
+
+Jika diketahui citra biner $D_{proses}$ sebagai hasil deteksi cacat dari pengolahan data dan $D_{proses}^c$ komplemennya, citra biner $A$ sebagai hasil pengisian lubang, serta citra biner $D_{manual}$ sebagai penandaan cacat yang dibuat manual dan komplemen $D_{manual}^c$, persamaan-persamaan berikut dapat digunakan untuk mengambil keempat ukuran akurasi di atas. Perlu dilakukan operasi irisan dengan daerah batas deteksi $A$ untuk mendapatkan hasil yang valid.
+
+\begin{enumerate}
+\item \emph{True positive rate}: jumlah \emph{pixel} daerah cacat yang berhasil dideteksi oleh algoritma
+\begin{equation*}
+TP = n(D_{proses} \cap D_{manual} \cap A) \nonumber \\
+\end{equation*}
+\item \emph{False positive rate}: jumlah \emph{pixel} daerah normal yang ditandai sebagai cacat.
+\begin{equation*}
+FP = n(D_{proses} \cap D_{manual}^c \cap A) \nonumber \\
+\end{equation*}
+\item \emph{True negative rate}: jumlah \emph{pixel} daerah normal yang tidak ditandai sebagai cacat, 
+\begin{equation*}
+TN = n(D_{proses}^c \cap D_{manual}^c \cap A) \nonumber \\
+\end{equation*}
+\item \emph{False negative rate}: jumlah \emph{pixel} daerah cacat yang tidak terdeteksi oleh algoritma.
+\begin{equation*}
+FN = n(D_{proses}^c \cap D_{manual} \cap A)
+\end{equation*}
+\end{enumerate}
+
 
 \end{document}
