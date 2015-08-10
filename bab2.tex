@@ -440,17 +440,17 @@ ssd(p,k) = \sqrt{\frac{\sum_{r,g,b} (\mu(k) - p)^2}{3}}
 
 \emph{Pixel} yang diklasifikasikan dalam kelas dengan rata-rata intensitas tertinggi merupakan daerah normal pada kulit jeruk. Untuk menandainya dilakukan operasi \emph{thresholding} pada matriks kelas \emph{pixel} dengan nilai kelas tertinggi sebagai nilai \emph{threshold}.
 
-Contoh pembentukan mask $M$ dari matriks kelas $K$ dengan kelas 5 sebagai kelas dengan rata-rata intensitas tertinggi.
+Contoh pembentukan mask $M$ dari matriks kelas $H$ dengan kelas 5 sebagai kelas dengan rata-rata intensitas tertinggi.
 
 \begin{equation*}
-M  = \begin{bmatrix}
+H  = \begin{bmatrix}
 1 & 1 & 1 & 1 & 1 \\
 1 & 5 & 5 & 5 & 1 \\
 1 & 5 & 1 & 5 & 1 \\
 1 & 4 & 5 & 3 & 1 \\
 1 & 1 & 1 & 1 & 1
 \end{bmatrix} \qquad 
-K  = \begin{bmatrix}
+M  = \begin{bmatrix}
 0 & 0 & 0 & 0 & 0 \\
 0 & 1 & 1 & 1 & 0 \\
 0 & 1 & 0 & 1 & 0 \\
@@ -463,12 +463,45 @@ K  = \begin{bmatrix}
 
 Penandaan daerah cacat memerlukan penentuan seluruh daerah jeruk yang bisa diproses dengan metode ini. Daerah tepi dengan kelas yang intensitasnya lebih rendah tidak dapat diproses karena perbedaan perbandingan nilai intensitas antara daerah normal dan daerah cacat. Bagian tepi tersebut tidak dimasukkan ke dalam perhitungan.
 
-Untuk mendapatkan seluruh daerah yang tercakup pemrosesan maka dilakukan operasi morfologis \emph{hole filling} pada \emph{mask} daerah normal.
+Untuk mendapatkan seluruh daerah yang tercakup pemrosesan maka dilakukan operasi morfologis \emph{hole filling} pada \emph{mask} daerah normal. Berikut ini adalah contoh penerapan operasi \emph{hole filling} untuk matriks $M$ dengan \emph{structuring element} $B$.
+
+\begin{equation*}
+B = \begin{bmatrix}
+0 & 1 & 0 \\
+1 & 1 & 1 \\
+0 & 1 & 0
+\end{bmatrix} \qquad
+M^c = \begin{bmatrix}
+1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 1 \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 1 & 1 \\
+1 & 1 & 1 & 1 & 1
+\end{bmatrix}
+\end{equation*}
+
+\begin{align*}
+X_0 = & \begin{bmatrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix} \\
+M' = & X_0 \cup M \\
+M'  = & \begin{bmatrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 \\
+0 & 1 & 1 & 1 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\end{align*}
 
 \begin{align}
 	p_{cacat} = & \frac{L_{cacat}}{L_{normal} + L_{cacat}} \\
-	L_{normal} \approx & Luas(H) \\
-	L_{cacat} \approx & Luas(H' - H)
+	L_{normal} \approx & Luas(M) \\
+	L_{cacat} \approx & Luas(M' - M)
 \end{align}
 
 %$H'$ adalah \emph{convex hull} semua \emph{pixel} $H$ yang masuk dalam kelas dengan intensitas tertinggi.

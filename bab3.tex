@@ -80,8 +80,14 @@ Pengambilan foto dilakukan dengan perlengkapan-perlengkapan berikut
 
 Kamera DSLR diset sebagai berikut: sensitivitas ISO 200, mode pencahayaan \emph{aperture priority}, format citra JPEG dengan resolusi 3406x2304 \emph{pixel}
 
-%Kamera, sumber cahaya dan objek disusun sebagai berikut.
+Kamera, sumber cahaya dan objek disusun sebagai Gambar \ref{fig:setup}. Jarak antara kamera dan objek adalah 50cm.
 % 50cm
+\begin{figure}[h]
+\centering
+\includegraphics[width=8cm]{tex/Photo-0776.jpg}
+\caption{Penataan kamera, sumber cahaya dan objek}
+\label{fig:setup}
+\end{figure}
 
 Pengambilan foto diulang dua kali dengan objek diputar 180$^o$ untuk mengambil gambar semua sisi jeruk.
 
@@ -106,7 +112,7 @@ Citra dipisahkan ke dalam tiap komponen warna RGB. Untuk tiap komponen warna dih
 
 \subsubsection{Klasifikasi \emph{Pixel} Awal}
 
-Pada citra jeruk dilakukan klasifikasi \emph{pixel} awal berdasarkan perbandingan nilai komponen warna \emph{pixel} dengan hasil \emph{threshold} sesuai rumus \ref{classcol}. Hasil yang didapatkan disimpan sebagai matriks angka integer yang menunjukkan kelas-kelas untuk tiap pixel. Tabel \ref{table:preclass3} menunjukkan contoh hasil klasifikasi awal.
+Pada citra jeruk dilakukan klasifikasi \emph{pixel} awal berdasarkan perbandingan nilai komponen warna \emph{pixel} dengan hasil \emph{threshold} sesuai rumus \ref{classcol}. Hasil yang didapatkan disimpan sebagai matriks angka integer yang menunjukkan kelas-kelas untuk tiap pixel. Tabel \ref{table:preclass3} menunjukkan contoh hasil klasifikasi awal. Gambar \ref{fig:preclassex} adalah contoh hasil klasifikiasi awal untuk citra jeruk.
 
 \begin{table}[h]
 \centering
@@ -124,6 +130,14 @@ Pada citra jeruk dilakukan klasifikasi \emph{pixel} awal berdasarkan perbandinga
 \caption{Contoh klasifikasi awal \emph{pixel}}
 \label{table:preclass3}
 \end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3005.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/seg12a.png}
+\caption{Contoh hasil klasifikasi awal untuk citra jeruk}
+\label{fig:preclassex}
+\end{figure}
 
 \subsubsection{Perhitungan Rata-Rata Intensitas Kelas dan Jarak Antarkelas}
 
