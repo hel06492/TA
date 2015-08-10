@@ -60,11 +60,19 @@ Klasifikasi selanjutnya dilakukan dengan pencarian jarak minimum dari tiap pixel
 
 Metode di atas dapat menentukan daerah cacat sebanyak 70\%-80\% pada bagian tengah dari seluruh permukaan jeruk yang tampak pada citra. Deteksi tidak dapat dilakukan pada bagian tepi karena adanya perbedaan intensitas cahaya yang diterima oleh objek.
 
+\section{Citra Digital dan Pengolahan Citra}
+
+Citra (\emph{image}) adalah representasi spasial dari suatu objek yang sebenarnya dalam bidang dua dimensi yang biasanya ditulis dalam koordinat kartesius $x-y$, dan setiap koordinat merepresentasikan satu sinyal terkecil dari objek\cite{kulkarni}. Citra digital adalah fungsi intensitas warna dua dimensi $f(x,y)$, dengan $x$ dan $y$ mewakili koordinat lokasi suatu titik dan nilai dari fungsi yang merupakan tingkat intensitas warna atau tingkat keabu-abuan dari titik tersebut\cite{schalkoff}. Citra digital merupakan representasi dari suatu objek nyata yang dapat dikenali oleh komputer.
+
+Pengolahan citra (\emph{image processing}) merupakan suatu sistem di mana proses dilakukan dengan masukan berupa citra dan hasilnya juga berupa citra\cite{basuki}. Pada awalnya pengolahan citra hanya dilakukan untuk memperbaiki kualitas citra, namun dengan berkembangnya teknologi informasi serta meningkatnya kapasitas kemampuan komputer, pengolahan citra mulai dilibatkan dalam pengambilan informasi dari citra digital.
+
+Pada perkembangannya,  pengolahan citra mempunyai dua tujuan utama yaitu,
+\begin{enumerate}
+\item Memperbaiki kualitas citra sehingga manusia dapat melihat informasi yang diharapkan dengan menginterpretasi citra, dalam hal ini penafsiran informasi tetap dilakukan oleh manusia.
+\item Mengekstraksi informasi atau ciri yang menonjol dari suatu citra, sehingga manusia mendapat informasi secara numerik atau bentuk lain, dengan kata lain penafsiran informasi dilakukan oleh komputer.
+\end{enumerate}
+
 \section{Computer Vision}
-
-Citra digital adalah fungsi intensitas warna dua dimensi $f(x,y)$, dengan $x$ dan $y$ mewakili koordinat lokasi suatu titik dan nilai dari fungsi yang merupakan tingkat intensitas warna atau tingkat keabu-abuan dari titik tersebut (Schalkoff, 1989). Citra digital merupakan representasi dari suatu objek nyata yang dapat dikenali oleh komputer.
-
-Pengolahan citra digital atau digital image processing pengolahan sinyal untuk input citra digital dua dimensi. Tujuan pengolahan citra digital adalah untuk meningkatkan kualitas gambar sehingga lebih mudah dilihat oleh manusia atau lebih mudah diolah oleh komputer.
 
 Computer vision adalah bidang studi yang mempelajari metode-metode pengumpulan, pemrosesan, analisis dan penafsiran citra dari dunia nyata dengan tujuan untuk menghasilkan informasi numerik atau simbolis.
 
@@ -116,9 +124,9 @@ Untuk keperluan klasifikasi, tiap kelas data diwakili oleh sebuah titik pusat \e
 Perhitungan jarak Euclidean digunakan untuk mengklasifikasikan \emph{pixel} pada citra jeruk untuk deteksi daerah cacat. Tiap \emph{pixel} diukur jaraknya dari nilai intensitas rata-rata tiap kelas.
 
 \subsection{Sistem Warna RGB}
-Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang dalam koordinat tersebut dengan tiap warna direpresentasikan sebagai sebuah titik. Sistem warna RGB memodelkan semua warna sebagai kombinasi tiga warna primer yaitu merah (R), hijau (G) dan biru (B) dalam berbagai intensitas. Dalam model ini, sebuah koordinat kartesius 3-dimensi menunjukkan besarnya intensitas tiap komponen warna. Warna-warna digambarkan sebagai titik-titik di dalam sebuah kubus yang meliputi seluruh kombinasi nilai ketiga komponen, setiap warna dideskripsikan dengan vektor dari titik asal. Warna hitam terletak di titik asal koordinat, dan warna putih di sudut terjauh dari titik asal.
+Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang dalam koordinat tersebut dengan tiap warna direpresentasikan sebagai sebuah titik. Sistem warna RGB memodelkan semua warna sebagai kombinasi tiga warna primer yaitu merah (R), hijau (G) dan biru (B) dalam berbagai intensitas. Dalam model ini, sebuah koordinat kartesius 3-dimensi menunjukkan besarnya intensitas tiap komponen warna. Warna-warna digambarkan sebagai titik-titik di dalam sebuah kubus yang meliputi seluruh kombinasi nilai ketiga komponen, setiap warna dideskripsikan dengan vektor dari titik asal. Warna hitam terletak di titik asal koordinat, dan warna putih di sudut terjauh dari titik asal\cite{gon}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=10cm]{tex/rgb-colourcube.png}
 \caption{Kubus Model Warna RGB}
@@ -127,9 +135,11 @@ Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang d
 \emph{Pixel} pada citra digital merupakan kombinasi tiga nilai intensitas komponen warna primer RGB, maka tiap \emph{pixel} dapat dilihat sebagi titik-titik data pada koordinat kartesius 3-dimensi dari sistem warna RGB. Sebagaimana titik pada ruang vektor lainnya, ukuran metrik fungsi ketidaksamaan berlaku untuk data \emph{pixel} RGB, sehingga klasifikasi \emph{nearest neighbor} dapat diterapkan.
 
 
-\subsection{Metode Otsu}
+\subsection{Metode \emph{Thresholding} Otsu}
 
-Metode segmentasi Otsu digunakan untuk memisahkan pixel latar belakang dengan pixel objek. Algoritma Otsu membagi data histogram menjadi dua kelas dengan mencari nilai ambang yang memaksimumkan selisih rata-rata data antarkelas, dengan demikian memperkecil selisih rata-rata data dalam satu kelas. Perhitungan tersebut diformulasikan sebagai berikut
+\emph{Thresholding} adalah suatu metode untuk memisahkan objek dan \emph{background}-nya. Tujuan \emph{thresholding} adalah untuk menemukan nilai \emph{threshold} yang tepat untuk memisahkan objek dari \emph{background}. Hasil \emph{thresholding} biasanya berupa citra biner, dengan nilai 1 atau aras keabuan maksimum menggantikan nilai-nilai \emph{pixel} di atas ambang dan nilai 0 menggantikan nilai-nilai \emph{pixel} di bawah ambang.
+
+Metode \emph{thresholding} Otsu digunakan untuk memisahkan pixel latar belakang dengan pixel objek. Algoritma Otsu membagi data histogram menjadi dua kelas dengan mencari nilai ambang yang memaksimumkan selisih rata-rata data antarkelas, dengan demikian memperkecil selisih rata-rata data dalam satu kelas. Perhitungan tersebut diformulasikan sebagai berikut
 
 \begin{equation}
 	\sigma_{\omega}^2 (t) = \omega_1 (t) \sigma_{\omega}^2 (t) + \omega_2 (t) \sigma_{\omega}^2 (t)
