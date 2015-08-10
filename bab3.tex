@@ -66,6 +66,7 @@ Langkah-langkah penelitian yang harus dilakukan yaitu:
 \item klasifikasi \emph{pixel} akhir
 \item pembuatan \emph{mask} untuk menandai objek jeruk dan daerah-daerah cacat pada jeruk
 \item perhitungan luas daerah cacat pada permukaan kulit jeruk
+\item perhitungan akurasi hasil deteksi
 \end{enumerate}
 
 \subsubsection{Pengambilan Foto} \label{photoshoot}
@@ -178,5 +179,9 @@ Untuk mendapatkan daerah cacat, dibuat sebuah \emph{mask} $T'$ dengan cara menam
 \subsubsection{Penghitungan Luas Daerah Cacat}
 
 Luas daerah cacat dapat diperkirakan dari prosentase jumlah pixel cacat yang terdeteksi terhadap jumlah pixel \emph{mask} hasil operasi penutupan lubang. Kualitas jeruk dapat ditentukan berdasarkan prosentase cacat sesuai dengan standard SNI. Namun, untuk mendapatkan hasil perhitungan yang akurat objek perlu diputar untuk mendapatkan hasil deteksi pada daerah-daerah yang tidak ikut diproses.
+
+\subsubsection{Perhitungan Akurasi Hasil Deteksi}
+
+Hasil deteksi cacat dengan pengolahan citra dibandingkan dengan citra biner deteksi cacat secara manual yang dibuat dengan perangkat lunak penyunting citra.
 
 \end{document}

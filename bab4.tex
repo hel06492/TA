@@ -16,7 +16,7 @@ Data berupa foto jeruk yang telah diambil sesuai dengan langkah-langkah yang dij
 
 Foto jeruk diperkecil resolusinya dan disunting secara manual untuk menghilangkan objek latar belakang. Hasil pengolahan awal ditunjukkan pada gambar \ref{fig:imgedited}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=8cm]{../olahdata/proc/smoothcrop/DSC_2996.png}
 \caption{Gambar yang sudah dibersihkan}
@@ -170,29 +170,101 @@ K8 & K7 & -- \\
 
 Dari matriks data klasifikasi diambil titik-titik \emph{pixel} dengan kelas tertinggi sebagai sebuah citra biner yang menunjukkan bagian teksur normal. Operasi morfologi penutupan lubang dilakukan atas citra biner ini lalu diambil selisihnya untuk mendeteksi bagian-bagian cacat.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3normal.png}
-\caption{\emph{Mask} yang menunjukkan tekstur normal}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3filled.png}
-\caption{Hasil penutupan lubang pada \emph{mask}}
-\end{figure}
-
-\begin{figure}[h]
-\centering
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3normal.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3filled.png} \qquad
 \includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
-\caption{Daerah cacat yang dideteksi}
+\caption{\emph{Mask} tekstur normal, hasil penutupan lubang dan cacat yang dideteksi}
 \end{figure}
+
+%\begin{figure}[h!]
+%\centering
+%\caption{Hasil penutupan lubang pada \emph{mask}}
+%\end{figure}
+
+%\begin{figure}[h!]
+%\centering
+%\caption{Daerah cacat yang dideteksi}
+%\end{figure}
+
+Berikut ini adalah data-data jumlah \emph{pixel} yang didapatkan pada gambar di atas.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Data & Jumlah \emph{pixel} \\
+\hline
+Daerah normal & 221386 \\
+Daerah cacat & 3615 \\
+\hline
+\end{tabular}
+\caption{Data perhitungan jumlah \emph{pixel}}
+\end{table}
 
 \section{Perhitungan Luas Cacat dan Akurasi}
 
-Sebagai acuan akurasi deteksi, digunakan citra biner cacat tekstur kulit yang digambar secara manual dengan menggunakan perangkat \emph{fuzzy select} dan \emph{color select} pada aplikasi pengolah citra Gimp. Prosentase hasil deteksi dan akurasi ditunjukkan pada tabel di bawah.
+Sebagai acuan akurasi deteksi, digunakan citra biner cacat tekstur kulit yang digambar secara manual dengan menggunakan perangkat \emph{fuzzy select} dan \emph{color select} pada aplikasi pengolah citra Gimp. Luas daerah yang dapat diproses dibandingkan dengan dengan keseluruhan luas objek jeruk dalam citra untuk mendapatkan prosentase luas deteksi.
 
-\begin{figure}[h]
+\begin{figure}[h!]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
+\includegraphics[width=4cm]{../olahdata/manual/DSC_2996.png} \qquad
+\caption{Hasil deteksi dengan pemrosesan dan hasil penandaan manual}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=2.8cm]{tex/tp3.png} \hskip 0.5cm
+\includegraphics[width=2.8cm]{tex/tn3.png} \hskip 0.5cm
+\includegraphics[width=2.8cm]{tex/fp3.png} \hskip 0.5cm
+\includegraphics[width=2.8cm]{tex/fn3.png}
+\caption{\emph{Mask} pengujian hasil deteksi: \emph{true positive}, \emph{true negative}, \emph{false positive}, \emph{false negative}}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3filled.png} \qquad
+\includegraphics[width=4cm]{tex/detected3.png}
+\caption{Perbandingan bagian jeruk yang dapat dideteksi dengan keseluruhan permukaan jeruk pada citra}
+\end{figure}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Data & Jumlah \emph{pixel} \\
+\hline
+$TP$ & 2731 \\
+$FP$ & 884 \\
+$TN$ & 200468 \\
+$FN$ & 20918 \\
+Area deteksi & 225001 \\
+Total area objek & 271992 \\
+\hline
+\end{tabular}
+\caption{Tabel perhitungan akurasi deteksi}
+\label{table:confuse3}
+\end{table}
+
+Dari data Tabel \ref{table:confuse3} didapatkan ukuran presisi, akurasi dan \emph{recall} untuk pemrosesan data sampel.
+
+\begin{align*}
+presisi & = \frac{2731}{2731 + 884}  = 0.76 \\
+akurasi & = \frac{2731+200468}{2731+200468+884+20918}  = 0.90 \\
+recall & = \frac{2731}{2731+20918}  = 0.12
+\end{align*}
+
+Prosentase permukaan yang dapat dideteksi.
+
+\begin{equation*}
+deteksi =\frac{221386}{271992} \ast 100\% = 82.72\%
+\end{equation*}
+
+Prosentase hasil deteksi dan akurasi dari semua data eksperimen ditunjukkan pada tabel di bawah.
+
+\begin{figure}[h!]
 \centering
 \includegraphics[width=10cm]{tex/comparison.png}
 \caption{Akurasi deteksi}
