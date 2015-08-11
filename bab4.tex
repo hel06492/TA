@@ -265,17 +265,17 @@ Sebagai acuan akurasi deteksi, digunakan citra biner cacat tekstur kulit yang di
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
-\includegraphics[width=4cm]{../olahdata/manual/DSC_2996.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png} \qquad
+\includegraphics[width=4cm]{../olahdata/manual/DSC_2996.png}
 \caption{Hasil deteksi dengan pemrosesan dan hasil penandaan manual}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=2.8cm]{tex/tp3.png} \hskip 0.5cm
-\includegraphics[width=2.8cm]{tex/tn3.png} \hskip 0.5cm
-\includegraphics[width=2.8cm]{tex/fp3.png} \hskip 0.5cm
-\includegraphics[width=2.8cm]{tex/fn3.png}
+\includegraphics[width=4cm]{tex/tp3.png} \qquad
+\includegraphics[width=4cm]{tex/tn3.png} \vskip 0.5cm
+\includegraphics[width=4cm]{tex/fp3.png} \qquad
+\includegraphics[width=4cm]{tex/fn3.png}
 \caption{\emph{Mask} pengujian hasil deteksi: \emph{true positive}, \emph{true negative}, \emph{false positive}, \emph{false negative}}
 \end{figure}
 
@@ -357,7 +357,7 @@ Perbandingan akurasi dengan hasil penandaan manual ditunjukkan pada tabel \ref{t
 %\resizebox{0.9\textwidth
 \begin{tabular} {|l|l|l|l|l|l|l|l|l|l|l|}
 \hline
-Data ke- & $n$ total & $n$ det.&  $TP$ & $FP$ & $TN$ & $FN$ & Presisi & Akurasi & \emph{Recall} & \% deteksi \\
+Data & $n$ total & $n$ det.&  $TP$ & $FP$ & $TN$ & $FN$ & \% Presisi & \% Akurasi & \% \emph{Recall} & \% deteksi \\
 \hline
 1a & 300646&243449&503&1158&234702&64283&30.283&78.233&0.776&80.975 \\
 1b & 288910&38716&4&717&217481&70708&0.555&75.278&0.006&13.401 \\
@@ -378,6 +378,101 @@ Data ke- & $n$ total & $n$ det.&  $TP$ & $FP$ & $TN$ & $FN$ & Presisi & Akurasi 
 \label{table:detconfuse}
 \end{table}
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& Foto & Normal & Cacat & Det. Manual \\
+\hline
+1a &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2994.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask1normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask1blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_2994.png} \\
+\hline
+1b &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2995.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask2normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask2blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_2995.png} \\
+\hline
+2a &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2997.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask3normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask3blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_2997.png} \\
+\hline
+2b &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2996.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask4normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask4blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_2996.png} \\
+\hline
+3a &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2998.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask5normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask5blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_2998.png} \\
+\hline
+3b &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2999.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask6normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask6blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_2999.png} \\
+\hline
+\end{tabular}
+\caption{Hasil deteksi cacat dengan pemrosesan dan penandaan manual (bagian 1)}
+\label{table:fodderpls}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& Foto & Normal & Cacat & Det. Manual \\
+4a &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3000.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask7normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask7blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_3000.png} \\
+\hline
+4b &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3001.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask8normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask8blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_3001.png} \\
+\hline
+5a &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3002.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask9normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask9blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_3002.png} \\
+\hline
+5b &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3003.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask10normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask10blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_3003.png} \\
+\hline
+6a &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3004.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask11normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask11blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_3004.png} \\
+\hline
+6b &
+\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3005.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask12normal.png} &
+\includegraphics[width=3cm]{../olahdata/proc/data/mask12blemish.png} &
+\includegraphics[width=3cm]{../olahdata/manual/DSC_3005.png} \\
+\hline
+\end{tabular}
+\caption{Hasil deteksi cacat dengan pemrosesan dan penandaan manual (bagian 2)}
+\label{table:fodderpls2}
+\end{table}
+
+
+\FloatBarrier
 \section{Perbandingan Hasil}
 
 Untuk perbandingan hasil akan dipilih beberapa data yang memiliki ciri signifikan.
@@ -392,8 +487,8 @@ Untuk perbandingan hasil akan dipilih beberapa data yang memiliki ciri signifika
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.2cm]{../olahdata/proc/smoothcrop/DSC_2996.png}
-\includegraphics[width=3.2cm]{../olahdata/proc/data/seg3a.png}
+\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_2996.png}
+\includegraphics[width=4cm]{../olahdata/proc/data/seg3a.png}
 \caption{Hasil klasifikasi awal data 2a}
 \end{figure}
 
@@ -415,7 +510,7 @@ Untuk perbandingan hasil akan dipilih beberapa data yang memiliki ciri signifika
 8 & 180.61 & 177.75 & 85.59 \\
 \cline{1-4}
 \end{tabular}
-\caption{Nilai rata-rata intensitas tiap kelas data 2a}
+\caption[]{Nilai rata-rata intensitas tiap kelas data 2a}
 \label{table:avgyellow1}
 \end{table}
 
@@ -435,7 +530,7 @@ K7 & 127.27 & 79.14 & 63.84 & 68.59 & 63.28 & 66.83 & -- & 46.39 \\
 K8 & 153.05 & 95.68 & 89.52 & 82.46 & 88.00 & 83.59 & 46.39 & -- \\
 \hline
 \end{tabular}
-\caption{Jarak antarkelas data 2a}
+\caption[]{Jarak antarkelas data 2a}
 \label{table:distyellow}
 \end{table}
 
@@ -455,14 +550,21 @@ K7 & K8 & K5 = K7 + K8 \\
 K8 & K7 & -- \\
 \hline
 \end{tabular}
-\caption{Kelas baru data 2a}
+\caption[]{Kelas baru data 2a}
 \label{table:clsyellow2}
 \end{table}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.2cm]{../olahdata/proc/data/seg3b.png}
+\includegraphics[width=4cm]{../olahdata/proc/data/seg3b.png}
 \caption{Hasil klasifikasi akhir data 2a}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3normal.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
+\caption[]{Hasil deteksi daerah normal dan cacat 2a}
 \end{figure}
 
 \begin{table}[h!]
@@ -480,22 +582,26 @@ K8 & K7 & -- \\
 5 & 163.00 & 157.10 & 21.04 \\
 \cline{1-4}
 \end{tabular}
-\caption{Rata-rata intensitas kelas baru data 2a}
+\caption[]{Rata-rata intensitas kelas baru data 2a}
 \label{table:avgyellow2}
 \end{table}
 
 Data menunjukkan variasi intensitas yang relatif rendah dengan kontras antara daerah normal dan daerah cacat tinggi. Cakupan daerah yang terproses luas karena intensitas tinggi yang merata meliputi sebagian besar permukaan jeruk. Kontras yang tinggi antara daerah cacat dan daerah normal menyebabkan akurasi deteksi relatif tinggi di antara data lainnya.
 
+%\clearpage
+\FloatBarrier
 \subsection{Data Jeruk Hijau}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.2cm]{../olahdata/proc/smoothcrop/DSC_3000.png}
-\includegraphics[width=3.2cm]{../olahdata/proc/data/seg7a.png}
-\caption{Hasil klasifikasi awal data 4a}
+\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3000.png}
+\includegraphics[width=4cm]{../olahdata/proc/data/seg7a.png}
+\caption[]{Hasil klasifikasi awal data 4a}
 \end{figure}
 
-\begin{table}[h!]
+Jeruk hijau mempunyai variasi warna yang lebih banyak daripada jeruk kuning. Daerah intensitas tinggi yang dapat dideteksi sedikit lebih sempit daripada jeruk kuning, akurasinya sebanding dengan data jeruk kuning. Dari contoh data terlihat bahwa cacat di bagian tengah tidak terdeteksi karena adanya kilap dari pantulan cahaya.
+
+\begin{table}[h]
 \centering
 \begin{tabular}{|l|l|l|l|}
 \cline{1-4}
@@ -513,38 +619,38 @@ Data menunjukkan variasi intensitas yang relatif rendah dengan kontras antara da
 8 & 121.95 & 128.78 & 77.75 \\
 \cline{1-4}
 \end{tabular}
-\caption{Nilai rata-rata intensitas tiap kelas data 4a}
+\caption[]{Nilai rata-rata intensitas tiap kelas data 4a}
 \label{table:avggreen1}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[h]
 \centering
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
 Kelas & K1 & K2 & K3 & K4 & K5 & K6 & K7 & K8 \\
 \hline
-K1 & -- & 59.20 & 64.79 & 72.49 & 65.85 & 70.03 & 127.27 & 153.05 \\
-K2 & 59.20 & -- & 21.18 & 13.66 & 20.62 & 13.60 & 79.14 & 95.68 \\
-K3 & 64.79 & 21.18 & --	& 21.39 & 5.80 & 17.26 & 63.84 & 89.52 \\
-K4 & 72.49 & 13.66 & 21.39 & --	& 20.67 & 9.01 & 68.59 & 82.46 \\
-K5 & 65.85 & 20.62 & 5.80 & 20.67 & -- & 14.36 & 63.28 & 88.00 \\
-K6 & 70.03 & 13.60 & 17.26 & 9.01 & 14.36 & -- & 66.83 & 83.59 \\
-K7 & 127.27 & 79.14 & 63.84 & 68.59 & 63.28 & 66.83 & -- & 46.39 \\
-K8 & 153.05 & 95.68 & 89.52 & 82.46 & 88.00 & 83.59 & 46.39 & -- \\
+K1 & -- & 49.07 & 50.35 & 57.28 & 51.15 & 59.82 & 94.55 & 110.60 \\
+K2 & 49.07 & -- & 19.95 & 8.51 & 14.51 & 11.02 & 55.70 & 62.96 \\
+K3 & 50.35 & 19.95 & -- & 20.74 & 7.64 & 25.36 & 44.70 & 62.65 \\
+K4 & 57.28 & 8.51 & 20.74 & -- & 15.26 & 5.59 & 49.35 & 54.68 \\
+K5 & 51.15 & 14.51 & 7.64 & 15.26 & -- & 19.00 & 45.47 & 59.98 \\
+K6 & 59.82 & 11.02 & 25.36 & 5.59 & 19.00 & -- & 50.90 & 53.41 \\
+K7 & 94.55 & 55.70 & 44.70 & 49.35 & 45.47 & 50.90 & -- & 34.19 \\
+K8 & 110.60 & 62.96 & 62.65 & 54.68 & 59.98 & 53.41 & 34.19 & -- \\
 \hline
 \end{tabular}
-\caption{Jarak antarkelas data 4a}
+\caption[]{Jarak antarkelas data 4a}
 \label{table:distgreen}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[h]
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
 Kelas & Kelas Terdekat & Kelas Baru \\
 \hline
 K1 & K2 & K1 \\
-K2 & K6 & K2 \\
+K2 & K4 & K2 \\
 K3 & K5 & K3 = K3 + K5 \\
 K4 & K6 & K4 = K4 + K6 \\
 K5 & K3 & -- \\
@@ -553,14 +659,21 @@ K7 & K8 & K5 = K7 + K8 \\
 K8 & K7 & -- \\
 \hline
 \end{tabular}
-\caption{Kelas baru data 4a}
+\caption[]{Kelas baru data 4a}
 \label{table:clsgreen2}
 \end{table}
 
-\begin{figure}[h!]
+\begin{figure}[h]
 \centering
-\includegraphics[width=3.2cm]{../olahdata/proc/data/seg7b.png}
-\caption{Hasil klasifikasi akhir data 4a}
+\includegraphics[width=4cm]{../olahdata/proc/data/seg7b.png}
+\caption[]{Hasil klasifikasi akhir data 4a}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/data/mask7normal.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/mask7blemish.png}
+\caption[]{Hasil deteksi daerah normal dan cacat 4a}
 \end{figure}
 
 \begin{table}[h!]
@@ -578,19 +691,20 @@ K8 & K7 & -- \\
 5 & 117.30 & 125.20 & 51.60 \\
 \cline{1-4}
 \end{tabular}
-\caption{Rata-rata intensitas kelas baru data 4a}
+\caption[]{Rata-rata intensitas kelas baru data 4a}
 \label{table:avggreen2}
 \end{table}
 
-Jeruk hijau mempunyai variasi warna yang lebih banyak daripada jeruk kuning. Daerah intensitas tinggi yang dapat dideteksi sedikit lebih sempit daripada jeruk kuning, akurasinya sebanding dengan data jeruk kuning. Dari contoh data terlihat bahwa cacat di bagian tengah tidak terdeteksi karena adanya kilap dari pantulan cahaya.
-
+\FloatBarrier
 \subsection{Data Dengan Tingkat \emph{Recall} Rendah}
+
+Data 1b merupakan data dengan tingkat \emph{recall} yang sangat rendah.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.2cm]{../olahdata/proc/smoothcrop/DSC_2995.png}
-\includegraphics[width=3.2cm]{../olahdata/proc/data/seg2a.png}
-\caption{Hasil klasifikasi awal data 1b}
+\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_2995.png}
+\includegraphics[width=4cm]{../olahdata/proc/data/seg2a.png}
+\caption[]{Hasil klasifikasi awal data 1b}
 \end{figure}
 
 \begin{table}[h!]
@@ -611,8 +725,8 @@ Jeruk hijau mempunyai variasi warna yang lebih banyak daripada jeruk kuning. Dae
 8 & 152.74 & 172.17 & 126.82 \\
 \cline{1-4}
 \end{tabular}
-\caption{Nilai rata-rata intensitas tiap kelas data 1b}
-\label{table:avglow1}
+\caption[]{Nilai rata-rata intensitas tiap kelas data 1b}
+%\label[]{table:avglow1}
 \end{table}
 
 \begin{table}[h!]
@@ -621,17 +735,17 @@ Jeruk hijau mempunyai variasi warna yang lebih banyak daripada jeruk kuning. Dae
 \hline
 Kelas & K1 & K2 & K3 & K4 & K5 & K6 & K7 & K8 \\
 \hline
-K1 & -- & 59.20 & 64.79 & 72.49 & 65.85 & 70.03 & 127.27 & 153.05 \\
-K2 & 59.20 & -- & 21.18 & 13.66 & 20.62 & 13.60 & 79.14 & 95.68 \\
-K3 & 64.79 & 21.18 & --	& 21.39 & 5.80 & 17.26 & 63.84 & 89.52 \\
-K4 & 72.49 & 13.66 & 21.39 & --	& 20.67 & 9.01 & 68.59 & 82.46 \\
-K5 & 65.85 & 20.62 & 5.80 & 20.67 & -- & 14.36 & 63.28 & 88.00 \\
-K6 & 70.03 & 13.60 & 17.26 & 9.01 & 14.36 & -- & 66.83 & 83.59 \\
-K7 & 127.27 & 79.14 & 63.84 & 68.59 & 63.28 & 66.83 & -- & 46.39 \\
-K8 & 153.05 & 95.68 & 89.52 & 82.46 & 88.00 & 83.59 & 46.39 & -- \\
+K1 & -- & 59.29 & 50.00 & 62.51 & 50.71 & 62.06 & 93.75 & 147.27 \\
+K2 & 59.29 & -- & 29.03 & 5.48 & 23.59 & 3.19 & 55.18 & 89.61 \\
+K3 & 50.00 & 29.03 & -- & 28.49 & 7.43 & 29.82 & 44.28 & 101.24 \\
+K4 & 62.51 & 5.48 & 28.49 & -- & 23.86 & 5.05 & 51.70 & 85.82 \\
+K5 & 50.71 & 23.59 & 7.43 & 23.86 & -- & 24.19 & 44.98 & 98.59 \\
+K6 & 62.06 & 3.19 & 29.82 & 5.05 & 24.19 & -- & 53.21 & 86.70 \\
+K7 & 93.75 & 55.18 & 44.28 & 51.70 & 44.98 & 53.21 & -- & 71.53 \\
+K8 & 147.27 & 89.61 & 101.24 & 85.82 & 98.59 & 86.70 & 71.53 & -- \\
 \hline
 \end{tabular}
-\caption{Jarak antarkelas data 1b}
+\caption[]{Jarak antarkelas data 1b}
 \label{table:distlow}
 \end{table}
 
@@ -641,25 +755,32 @@ K8 & 153.05 & 95.68 & 89.52 & 82.46 & 88.00 & 83.59 & 46.39 & -- \\
 \hline
 Kelas & Kelas Terdekat & Kelas Baru \\
 \hline
-K1 & K2 & K1 \\
+K1 & K3 & K1 = K1 + K3 \\
 K2 & K6 & K2 \\
-K3 & K5 & K3 = K3 + K5 \\
+K3 & K1 & K1 = K1 + K3 \\
 K4 & K6 & K4 = K4 + K6 \\
-K5 & K3 & -- \\
-K6 & K4 & -- \\
-K7 & K8 & K5 = K7 + K8 \\
+K5 & K3 & K5 \\
+K6 & K2 & -- \\
+K7 & K8 & K6 = K7 + K8 \\
 K8 & K7 & -- \\
 \hline
 \end{tabular}
-\caption{Kelas baru data 1b}
-\label{table:clslow2}
+\caption[]{Kelas baru data 1b}
+%\label{table:clslow2}
 \end{table}
 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.2cm]{../olahdata/proc/data/seg2b.png}
-\caption{Hasil klasifikasi akhir data 1b}
+\includegraphics[width=4cm]{../olahdata/proc/data/seg2b.png}
+\caption[]{Hasil klasifikasi akhir data 1b}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=4cm]{../olahdata/proc/data/mask2normal.png} \qquad
+\includegraphics[width=4cm]{../olahdata/proc/data/mask2blemish.png}
+\caption[]{Hasil deteksi daerah normal dan cacat 1b}
 \end{figure}
 
 \begin{table}[h!]
@@ -678,9 +799,13 @@ K8 & K7 & -- \\
 6 & 152.74 & 172.17 & 126.82 \\
 \cline{1-4}
 \end{tabular}
-\caption{Rata-rata intensitas kelas baru data 1b}
-\label{table:avglow}
+\caption[]{Rata-rata intensitas kelas baru data 1b}
+%\label{table:avglow}
 \end{table}
+
+Data citra jeruk 1b memperlihatkan adanya kilap di tengah objek. Perbedaan intensitas kilap ini cukup tinggi dibandingkan dengan daerah lain sehingga membentuk kelas tersendiri yang sebagian besar terdiri dari \emph{pixel-pixel} di daerah kilap. Akibatnya, bagian selain kilap tidak masuk area deteksi. Hanya 13\% dari keseluruhan luas objek jeruk di dalam citra yang terproses, sedangkan pemrosesan tidak dapat bekerja dengan akurat untuk bagian yang berkilap.
+
+\FloatBarrier
 
 \section{Interpretasi Hasil}
 

@@ -86,6 +86,14 @@ Berikut ini adalah pengertian computer vision menurut beberapa pakar
 
 Boyle dan Thomas mengatakan bahwa computer vision lebih daripada pengenalan, computer vision melakukan operasi “low level processing” sebagai algoritma image processing yang murni. Mereka juga yang menggolongkan image processing ke dalam computer vision.
 
+\begin{figure}[h]
+\centering
+\includegraphics{tex/cvrelations.jpg}
+\caption{Hubungan \emph{computer vision} dengan bidang lain}
+\end{figure}
+
+\FloatBarrier
+
 \section{Standard Kualitas Jeruk Menurut SNI 3165-2009}
 
 SNI telah menetapkan standard kualitas untuk buah jeruk keprok (\emph{Citrus sinensis}) dalam SNI 3165-2009[3]. Standard ini diberlakukan bagi buah jeruk keprok yang dipasarkan untuk konsumsi langsung (bukan olahan atau bahan baku industri). Standard ini meliputi standard minimum, ketentuan kematangan, pengemasan, pelabelan, higienis, cemaran logam berat dan residu pestisida. Setelah memenuhi standard minimum tersebut, jeruk dapat diklasifikasi mutu dan ukurannya dengan batas-batas toleransi untuk tiap kelas mutu.\cite{sni}
@@ -123,6 +131,8 @@ Untuk keperluan klasifikasi, tiap kelas data diwakili oleh sebuah titik pusat \e
 
 Perhitungan jarak Euclidean digunakan untuk mengklasifikasikan \emph{pixel} pada citra jeruk untuk deteksi daerah cacat. Tiap \emph{pixel} diukur jaraknya dari nilai intensitas rata-rata tiap kelas.
 
+\FloatBarrier
+
 \subsection{Sistem Warna RGB}
 Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang dalam koordinat tersebut dengan tiap warna direpresentasikan sebagai sebuah titik. Sistem warna RGB memodelkan semua warna sebagai kombinasi tiga warna primer yaitu merah (R), hijau (G) dan biru (B) dalam berbagai intensitas. Dalam model ini, sebuah koordinat kartesius 3-dimensi menunjukkan besarnya intensitas tiap komponen warna. Warna-warna digambarkan sebagai titik-titik di dalam sebuah kubus yang meliputi seluruh kombinasi nilai ketiga komponen, setiap warna dideskripsikan dengan vektor dari titik asal. Warna hitam terletak di titik asal koordinat, dan warna putih di sudut terjauh dari titik asal\cite{gon}.
 
@@ -136,12 +146,36 @@ Sistem warna RGB didasarkan pada didasarkan pada pemahaman atas teori trikromati
 
 \emph{Pixel} pada citra digital merupakan kombinasi tiga nilai intensitas komponen warna primer RGB, maka tiap \emph{pixel} dapat dilihat sebagi titik-titik data pada koordinat kartesius 3-dimensi dari sistem warna RGB. Sebagaimana titik pada ruang vektor lainnya, ukuran metrik fungsi ketidaksamaan berlaku untuk data \emph{pixel} RGB, sehingga klasifikasi \emph{nearest neighbor} dapat diterapkan.
 
+\FloatBarrier
 
 \subsection{Metode \emph{Thresholding} Otsu}
 
-\emph{Thresholding} adalah suatu metode untuk memisahkan objek dan \emph{background}-nya. Tujuan \emph{thresholding} adalah untuk menemukan nilai \emph{threshold} yang tepat untuk memisahkan objek dari \emph{background}. Hasil \emph{thresholding} biasanya berupa citra biner, dengan nilai 1 atau aras keabuan maksimum menggantikan nilai-nilai \emph{pixel} di atas ambang dan nilai 0 menggantikan nilai-nilai \emph{pixel} di bawah ambang.
+\emph{Thresholding} adalah suatu metode untuk memisahkan objek dan \emph{background}-nya. Tujuan \emph{thresholding} adalah untuk menemukan nilai \emph{threshold} yang tepat untuk memisahkan objek dari \emph{background}. Hasil \emph{thresholding} berupa citra biner, dengan nilai 1 atau aras keabuan maksimum menggantikan nilai-nilai \emph{pixel} di atas ambang dan nilai 0 menggantikan nilai-nilai \emph{pixel} di bawah ambang, jika diasumsikan objek lebih terang daripada latar belakang. Namun intensitas objek dapat diasumsikan berada di bawah ambang atau di antara dua ambang batas\cite{shapiro}.
 
-Metode \emph{thresholding} Otsu digunakan untuk memisahkan pixel latar belakang dengan pixel objek. Algoritma Otsu membagi data histogram menjadi dua kelas dengan mencari nilai ambang yang memaksimumkan selisih rata-rata data antarkelas, dengan demikian memperkecil selisih rata-rata data dalam satu kelas. Perhitungan tersebut diformulasikan sebagai berikut
+\begin{figure}[h]
+\centering
+\includegraphics[width=6cm]{tex/bridgeori.jpg}
+\caption{Citra digital asli sebelum proses \emph{thresholding}}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6cm]{tex/bridgethresh.jpg}
+\caption{Citra digital biner setelah proses \emph{thresholding}}
+\end{figure}
+
+Menurut T. Sezgin dan Sankur\cite{sezgin}, metode-metode \emph{thresholding} dapat dikategorikan menjadi enam berdasarkan informasi yang dimanipulasi oleh algoritmanya. Kategori-kategori yang ada adalah
+
+\begin{description}
+\item[\emph{Histogram shape-based methods}] menganalisis bentuk-bentuk puncak, lembah atau kelengkungan histogram
+\item[\emph{Clustering-based methods}] melakukan \emph{clustering} nilai-nilai aras keabuan, atau memodelkannya sebagai campuran dua distribusi Gaussian
+\item[\emph{Entropy-based methods}] menggunakan entropi latar belakang dan objek, atau entropi silang dari citra asli dan citra biner hasil pengolahan
+\item[\emph{Object attribute-based methods}] mencari kesamaan citra \emph{grayscale} dengan citra biner hasil pengolahan, misalnya dengan \emph{fuzzy shape similarity}, \emph{edge coincidence} dan sebagainya
+\item[\emph{Spatial methods}] menggunakan probabilitas distribusi tingkat tinggi atau korelasi antar-\emph{pixel}
+\item[\emph{Local methods}] melakukan adaptasi nilai ambang terhadap karakteristik lokal citra, nilai ambang yang berbeda dipilih untuk setiap \emph{pixel} citra
+\end{description}
+
+Salah satu metode \emph{thresholding} adalah metode Otsu. Algoritma Otsu membagi data histogram menjadi dua kelas dengan mencari nilai ambang yang memaksimumkan selisih rata-rata data antarkelas, dengan demikian memperkecil selisih rata-rata data dalam satu kelas. Perhitungan tersebut diformulasikan sebagai berikut
 
 \begin{equation}
 	\sigma_{\omega}^2 (t) = \omega_1 (t) \sigma_{\omega}^2 (t) + \omega_2 (t) \sigma_{\omega}^2 (t)
@@ -271,6 +305,8 @@ $t$ & $\sigma_1$ & $\sigma_2$ & $\omega_1 \sigma_1$ & $\omega_2 \sigma_2$ & $\om
 Nilai jumlah variansi kedua kelas adalah minimum untuk $t=3$, dengan demikian nilai \emph{threshold} optimum untuk citra di atas adalah $t=3$.
 
 \end{enumerate}
+
+\FloatBarrier
 
 \subsection{Operasi Morfologi \emph{Hole Filling}}
 
