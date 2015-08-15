@@ -37,6 +37,9 @@
 
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
 \renewcommand*{\bibname}{DAFTAR PUSTAKA}
 %\renewcommand{\contentsname}{DAFTAR ISI}
 \addto{\captionsbahasa}{\renewcommand*{\contentsname}{DAFTAR ISI}}
@@ -75,7 +78,10 @@ thres-hold-ing di-pro-ses peng-i-si-an al-go-rit-ma}
 
 \titlespacing*{\chapter}{0pt}{3ex}{6ex}
 \titlespacing{\section}{-1cm}{*1.5}{*1.5}
-\titleformat*{\section}{\bfseries\large}
+\titleformat*{\section}{\bfseries}
+\titleformat*{\subsection}{\bfseries}
+\titleformat*{\subsection}{\normalfont}
+\titleformat*{\subsubsection}{\normalfont}
 
 \makeatletter
 \newcommand\invisiblechapter[1]{%
