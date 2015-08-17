@@ -87,10 +87,9 @@ Kamera DSLR diset sebagai berikut:
 \end{enumerate}
 
 Kamera, sumber cahaya dan objek disusun sebagai Gambar \ref{fig:setup}. Jarak antara kamera dan objek adalah 50cm.
-% 50cm
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm]{tex/Photo-0776.jpg}
+\includegraphics[width=8cm]{Photo-0776.jpg}
 \caption{Penataan kamera, sumber cahaya dan objek}
 \label{fig:setup}
 \end{figure}
@@ -103,11 +102,11 @@ Foto di-\emph{crop} dengan ukuran 2304x2304 \emph{pixel} untuk membuang bagian y
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=6cm]{tex/3005ori.jpg}
+\includegraphics[width=6cm]{3005ori.jpg}
 
 \vskip 1cm
-\includegraphics[width=4cm]{../data/DSC_3005.JPG} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3005.png}
+\includegraphics[width=4cm]{DSC_3005.JPG} \qquad
+\includegraphics[width=4cm]{DSC_3005.png}
 \caption{Foto asli, foto hasil \emph{crop} dan \emph{resize}, foto yang sudah dibersihkan}
 \end{figure}
 
@@ -139,8 +138,8 @@ Pada citra jeruk dilakukan klasifikasi \emph{pixel} awal berdasarkan perbandinga
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3005.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/seg12a.png}
+\includegraphics[width=4cm]{DSC_3005.png} \qquad
+\includegraphics[width=4cm]{seg12a.png}
 \caption{Contoh hasil klasifikasi awal untuk citra jeruk}
 \label{fig:preclassex}
 \end{figure}
@@ -165,8 +164,8 @@ Dari matriks kelas pixel titik-titik \emph{thresholding} untuk mengambil \emph{p
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/seg12b.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask12normal.png}
+\includegraphics[width=4cm]{seg12b.png} \qquad
+\includegraphics[width=4cm]{mask12normal.png}
 \caption{Contoh operasi \emph{thresholding} untuk mendapatkan lapisan kelas tertinggi.}
 \label{fig:highmask}
 \end{figure}
@@ -175,8 +174,8 @@ Untuk mendapatkan daerah cacat, dibuat sebuah \emph{mask} $T'$ dengan cara menam
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask12filled.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask12blemish.png}
+\includegraphics[width=4cm]{mask12filled.png} \qquad
+\includegraphics[width=4cm]{mask12blemish.png}
 \caption{Contoh operasi \emph{hole filling} diikuti dengan pencarian cacat dari selisih dengan \emph{mask} daerah normal.}
 \label{fig:holemask}
 \end{figure}

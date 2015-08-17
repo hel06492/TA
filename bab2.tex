@@ -16,7 +16,7 @@ Beberapa penelitian memfokuskan pada deteksi cacat bentuk atau tekstur secara vi
 
 \subsection{Identifikasi Kematangan Buah Tomat Menggunakan Metoda \emph{Backpropagation}}
 
-Penelitian ini mengidentifikasi kematangan buah tomat melalui pemrosesan data histogram citra dengan jaringan syaraf tiruan (JST). Metode JST yang digunakan adalah \emph{backpropagation} dengan 3 unit input untuk komponen warna RGB, 4 \emph{hidden layer} dan 3 unit output. Dari input nilai histogram ternormalisasi dihasilkan 3 target output yaitu buah masak (1 1 1), setengah masak (0 1 0) dan buah muda (0 0 0).\cite{derisma}
+Penelitian ini mengidentifikasi kematangan buah tomat melalui pemrosesan data histogram citra dengan jaringan syaraf tiruan (JST). Metode JST yang digunakan adalah \emph{backpropagation} dengan 3 unit input untuk komponen warna RGB, 4 \emph{hidden layer} dan 3 unit output. Dari input nilai histogram ternormalisasi dihasilkan 3 target output yaitu buah masak (1 1 1), setengah masak (0 1 0) dan buah muda (0 0 0)\cite{derisma}.
 
 JST \emph{backpropagation} mengenali pola melalui pelatihan dengan data \emph{training} dengan tiga \emph{sample} untuk masing-masing target output (3 \emph{sample} buah matang, 3 \emph{sample} buah mentah dan 3 \emph{sample} buah setengah matang). Pelatihan dilakukan sebanyak 50000 kali untuk mendapatkan nilai bobot yang akan digunakan untuk mengidentifikasi tingkat kematangan buah tomat.
 
@@ -24,7 +24,7 @@ Uji identifikasi dilakukan terhadap 20 data dari masing-masing tipe target. Sist
 
 \subsection{Navel Orange Blemish Identification for Quality Grading System}
 
-Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat.\cite{liu}
+Menurut penelitian ini, klasifikasi pixel untuk mengenali memar pada kulit jeruk mempunyai akurasi rendah karena perbedaan intensitas warna antara bagian tengah jeruk dengan bagian tepi jeruk pada citra jeruk. Untuk mengatasi masalah tersebut pengetahuan a priori mengenai variasi intensitas pada benda bulat diterapkan agar pixel bagian yang cacat dapat dikenali dengan tepat\cite{liu}.
 
 Sistem deteksi cacat berusaha meniru persepsi manusia yang membandingkan warna secara relatif dengan warna sekeliling.
 
@@ -88,7 +88,7 @@ Boyle dan Thomas mengatakan bahwa computer vision lebih daripada pengenalan, com
 
 \begin{figure}[h]
 \centering
-\includegraphics{tex/cvrelations.jpg}
+\includegraphics{cvrelations.jpg}
 \caption{Hubungan \emph{computer vision} dengan bidang lain}
 \end{figure}
 
@@ -96,7 +96,7 @@ Boyle dan Thomas mengatakan bahwa computer vision lebih daripada pengenalan, com
 
 \section{Standard Kualitas Jeruk Menurut SNI 3165-2009}
 
-SNI telah menetapkan standard kualitas untuk buah jeruk keprok (\emph{Citrus sinensis}) dalam SNI 3165-2009. Standard ini diberlakukan bagi buah jeruk keprok yang dipasarkan untuk konsumsi langsung (bukan olahan atau bahan baku industri). Standard ini meliputi standard minimum, ketentuan kematangan, pengemasan, pelabelan, higienis, cemaran logam berat dan residu pestisida. Setelah memenuhi standard minimum tersebut, jeruk dapat diklasifikasi mutu dan ukurannya dengan batas-batas toleransi untuk tiap kelas mutu.\cite{sni}
+SNI telah menetapkan standard kualitas untuk buah jeruk keprok (\emph{Citrus sinensis}) dalam SNI 3165-2009. Standard ini diberlakukan bagi buah jeruk keprok yang dipasarkan untuk konsumsi langsung (bukan olahan atau bahan baku industri). Standard ini meliputi standard minimum, ketentuan kematangan, pengemasan, pelabelan, higienis, cemaran logam berat dan residu pestisida. Setelah memenuhi standard minimum tersebut, jeruk dapat diklasifikasi mutu dan ukurannya dengan batas-batas toleransi untuk tiap kelas mutu\cite{sni}.
 
 Berdasarkan standard SNI tersebut, buah jeruk keprok dibagi menjadi tiga kelas:
 
@@ -112,7 +112,7 @@ Metode yang digunakan untuk mendeteksi cacat adalah klasifikasi \emph{pixel} ber
 
 \subsection{\emph{Nearest Neighbor Search}}
 
-\emph{Nearest Neighbor Search} (NNS) adalah optimisasi untuk menemukan titik data yang paling mirip. Ukuran kesamaan antara titik-titik data dengan $n$-atribut dapat dideskripsikan dalam fungsi ketidaksamaan \emph{(dissimilarity function)}.\cite{knuth} Pada umumnya data dimodelkan sebagai titik-titik pada ruang vektor dimensi-$n$. Salah satu perhitungan yang digunakan untuk mengukur ketidaksamaan antardata adalah rumus jarak Euclid.
+\emph{Nearest Neighbor Search} (NNS) adalah optimisasi untuk menemukan titik data yang paling mirip. Ukuran kesamaan antara titik-titik data dengan $n$-atribut dapat dideskripsikan dalam fungsi ketidaksamaan \emph{(dissimilarity function)}\cite{knuth}. Pada umumnya data dimodelkan sebagai titik-titik pada ruang vektor dimensi-$n$. Salah satu perhitungan yang digunakan untuk mengukur ketidaksamaan antardata adalah rumus jarak Euclid.
 
 \begin{equation}
 	d=\sqrt{\sum_{i=1}^n (a_i - b_i)^2}
@@ -124,7 +124,7 @@ Untuk keperluan klasifikasi, tiap kelas data diwakili oleh sebuah titik pusat \e
 
 \begin{figure}[h]
 \centering
-\includegraphics{tex/distex.png}
+\includegraphics{distex.png}
 \caption{Ilustrasi Klasifikasi Berdasarkan Jarak Terdekat}
 \label{fig:distex}
 \end{figure}
@@ -134,17 +134,17 @@ Perhitungan jarak Euclidean digunakan untuk mengklasifikasikan \emph{pixel} pada
 \FloatBarrier
 
 \subsection{Sistem Warna RGB}
-Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang dalam koordinat tersebut dengan tiap warna direpresentasikan sebagai sebuah titik. Sistem warna RGB memodelkan semua warna sebagai kombinasi tiga warna primer yaitu merah (R), hijau (G) dan biru (B) dalam berbagai intensitas. Dalam model ini, sebuah koordinat kartesius 3-dimensi menunjukkan besarnya intensitas tiap komponen warna. Warna-warna digambarkan sebagai titik-titik di dalam sebuah kubus yang meliputi seluruh kombinasi nilai ketiga komponen, setiap warna dideskripsikan dengan vektor dari titik asal. Warna hitam terletak di titik asal koordinat, dan warna putih di sudut terjauh dari titik asal.\cite{gon}
+Sistem warna atau model warna adalah spesifikasi sistem koordinat dan subruang dalam koordinat tersebut dengan tiap warna direpresentasikan sebagai sebuah titik. Sistem warna RGB memodelkan semua warna sebagai kombinasi tiga warna primer yaitu merah (R), hijau (G) dan biru (B) dalam berbagai intensitas. Dalam model ini, sebuah koordinat kartesius 3-dimensi menunjukkan besarnya intensitas tiap komponen warna. Warna-warna digambarkan sebagai titik-titik di dalam sebuah kubus yang meliputi seluruh kombinasi nilai ketiga komponen, setiap warna dideskripsikan dengan vektor dari titik asal. Warna hitam terletak di titik asal \mbox{koordinat}, dan warna putih di sudut terjauh dari titik asal\cite{gon}.
 
 Sistem warna RGB didasarkan pada didasarkan pada pemahaman atas teori trikromatik penglihatan mata manusia. Dengan pemahaman ini, sistem warna ini telah diterapkan untuk fotografi film berwarna dan terus dipakai di peralatan elektronik yang mengolah dan menampilkan citra, baik secara analog maupun digital. Kelebihan sistem warna RGB adalah penggunaannya yang luas pada perangkat elektronik sehingga dapat dengan mudah ditransfer tanpa memerlukan konversi. Kelemahan sistem ini adalah tidak dapat digunakan dengan sempurna pada perangkat cetak karena sifat substraktif dari pigmen warna yang digunakan dalam proses percetakan. 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=10cm]{tex/rgb-colourcube.png}
+\includegraphics[width=10cm]{rgb-colourcube.png}
 \caption{Kubus Model Warna RGB}
 \end{figure}
 
-\emph{Pixel} pada citra digital merupakan kombinasi tiga nilai intensitas komponen warna primer RGB, maka tiap \emph{pixel} dapat dilihat sebagi titik-titik data pada koordinat kartesius 3-dimensi dari sistem warna RGB. Sebagaimana titik pada ruang vektor lainnya, ukuran metrik fungsi ketidaksamaan berlaku untuk data \emph{pixel} RGB, sehingga klasifikasi \emph{nearest neighbor} dapat diterapkan.
+\emph{Pixel} pada citra digital merupakan kombinasi tiga nilai intensitas komponen warna primer RGB, maka tiap \emph{pixel} dapat dilihat sebagi titik-titik data pada \mbox{koordinat} kartesius 3-dimensi dari sistem warna RGB. Sebagaimana titik pada ruang vektor lainnya, ukuran metrik fungsi ketidaksamaan berlaku untuk data \emph{pixel} RGB, sehingga klasifikasi \emph{nearest neighbor} dapat diterapkan.
 
 \FloatBarrier
 
@@ -154,13 +154,13 @@ Sistem warna RGB didasarkan pada didasarkan pada pemahaman atas teori trikromati
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=6cm]{tex/bridgeori.jpg}
+\includegraphics[width=6cm]{bridgeori.jpg}
 \caption{Citra digital asli sebelum proses \emph{thresholding}}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=6cm]{tex/bridgethresh.jpg}
+\includegraphics[width=6cm]{bridgethresh.jpg}
 \caption{Citra digital biner setelah proses \emph{thresholding}}
 \end{figure}
 
@@ -266,8 +266,6 @@ Intensitas & Jumlah \emph{pixel} & $p_i$ \\
 %\end{table}
 
 \item Probabilitas kelas data histogram $\omega_1$ dan $\omega_2$ \\
-%\begin{table}
-%\centering
 \begin{tabular}{|l|l|l|}
 \hline
 $t$ & $\omega_1$ & $\omega_2$ \\
@@ -282,11 +280,8 @@ $t$ & $\omega_1$ & $\omega_2$ \\
 7 &  1.000 & 0.000 \\
 \hline
 \end{tabular}
-%\end{table}
 
 \item Variansi kelas $\sigma_1$, $\sigma_2$ dan jumlah bobot variansi kelas $\sigma_1 \omega_1$, $\sigma_2 \omega_2$ \\
-%\begin{table}
-%\centering
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
 $t$ & $\sigma_1$ & $\sigma_2$ & $\omega_1 \sigma_1$ & $\omega_2 \sigma_2$ & $\omega_1 \sigma_1 + \omega_2 \sigma_2$ \\
@@ -300,7 +295,6 @@ $t$ & $\sigma_1$ & $\sigma_2$ & $\omega_1 \sigma_1$ & $\omega_2 \sigma_2$ & $\om
 7 & 9.000 & 36.000 & 9.529 & 48.000 & 657.529 \\
 \hline
 \end{tabular}
-%\end{table}
 
 Nilai jumlah variansi kedua kelas adalah minimum untuk $t=3$, dengan demikian nilai \emph{threshold} optimum untuk citra di atas adalah $t=3$.
 
@@ -324,23 +318,23 @@ Berikut ini adalah contoh prosedur pengisian lubang.
 \begin{enumerate}
 \item Siapkan komplemen citra biner $A^c$ dari citra $A$.
 
-\includegraphics{tex/fill1.png}
+\includegraphics{fill1.png}
 \item Siapkan \emph{structuring element} B
 
-\includegraphics{tex/fill2.png}
+\includegraphics{fill2.png}
 \item Siapkan $X_0$ dengan satu titik awal di lokasi lubang untuk memulai pengisian lubang.
 
-\includegraphics{tex/fill3.png}
-\item Lakukan operasi sesuai persamaan \ref{eq:fill} secara berulang hingga lubang tertutup.
-\includegraphics{tex/fill4.png}
+\includegraphics{fill3.png}
+\item Lakukan operasi sesuai persamaan \ref{eq:fill} secara berulang hingga lubang \mbox{tertutup}.
+\includegraphics{fill4.png}
 \item Gabungkan $X_k$ dengan $A$
 
-\includegraphics{tex/fill5.png}
+\includegraphics{fill5.png}
 \end{enumerate}
 
 \section{Metode Klasifikasi \emph{Pixel} untuk Citra Jeruk}
 
-Hasil klasifikasi \emph{pixel} membagi jeruk menjadi lapisan-lapisan rentang intensitas dari yang terendah hingga rentang tertinggi. Sesuai karakteristik penyinaran pada benda bulat, intensitas tertinggi akan berada di tengah jeruk dan intensitas-intensitas terendah di tepinya. Cacat mempunyai intensitas lebih rendah daripada daerah normal di sekitarnya. Diskontinuitas pada daerah kelas dengan intensitas tertinggi menandakan adanya cacat pada bagian itu.\cite{liu}
+Hasil klasifikasi \emph{pixel} membagi jeruk menjadi lapisan-lapisan rentang intensitas dari yang terendah hingga rentang tertinggi. Sesuai karakteristik penyinaran pada benda bulat, intensitas tertinggi akan berada di tengah jeruk dan intensitas-intensitas terendah di tepinya. Cacat mempunyai intensitas lebih rendah daripada daerah normal di sekitarnya. Diskontinuitas pada daerah kelas dengan intensitas tertinggi menandakan adanya cacat pada bagian itu\cite{liu}.
 
 \subsection{Klasifikasi Awal dengan Kelas Warna}
 Salah satu problem dalam klasifikasi \emph{nearest neighbor} adalah penentuan pusat \emph{cluster} sebagai acuan. Metode standard klasifikasi menentukan pusat \emph{cluster} secara iteratif dari hasil klasifikasi titik-titik pada langkah sebelumnya sampai tercapai konvergensi. Penelitian ini menggunakan pembagian kelas warna seperti pada tabel \ref{table:colorclass} untuk mendapatkan titik-titik awal \emph{cluster}.
@@ -469,7 +463,7 @@ K8 & 110.60 & 62.96 & 62.65 & 54.68 & 59.98 & 53.41 & 34.19 & -- \\
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=7.5cm]{tex/cmerge7.png}
+\includegraphics[width=7.5cm]{cmerge7.png}
 \caption{Penggabungan Kelas}
 \label{fig:neighborhood}
 \end{figure}
@@ -483,8 +477,6 @@ ssd(p,k) = \sqrt{\frac{\sum_{r,g,b} (\mu(k) - p)^2}{3}}
 \end{equation}
 
 \section{Deteksi dan Pengukuran Prosentase Cacat Kulit Jeruk}
-
-%\subsection{Pembentukan \emph{Mask}}
 
 \emph{Pixel} yang diklasifikasikan dalam kelas dengan rata-rata intensitas tertinggi merupakan daerah normal pada kulit jeruk. Untuk menandainya dilakukan operasi \emph{thresholding} pada matriks kelas \emph{pixel} dengan nilai kelas tertinggi sebagai nilai \emph{threshold}.
 
@@ -506,8 +498,6 @@ M  = \begin{bmatrix}
 0 & 0 & 0 & 0 & 0
 \end{bmatrix}
 \end{equation*}
-
-%\subsection{Operasi \emph{Hole Filling}}
 
 Penandaan daerah cacat memerlukan penentuan seluruh daerah jeruk yang bisa diproses dengan metode ini. Daerah tepi dengan kelas yang intensitasnya lebih rendah tidak dapat diproses karena perbedaan perbandingan nilai intensitas antara daerah normal dan daerah cacat. Bagian tepi tersebut tidak dimasukkan ke dalam perhitungan.
 
@@ -552,7 +542,6 @@ M'  = & \begin{bmatrix}
 	L_{cacat} \approx & Luas(M' - M)
 \end{align}
 
-%$H'$ adalah \emph{convex hull} semua \emph{pixel} $H$ yang masuk dalam kelas dengan intensitas tertinggi.
 $H$ adalah kumpulan \emph{pixel} dengan kelas yang paling tinggi intensitasnya, $H'$ adalah hasil pengisian lubang. Cacat dideteksi dari selisih antara $H$ dan $H'$.
 
 \section{Akurasi Deteksi}
@@ -569,7 +558,7 @@ $H'$ merupakan hasil pengisian lubang yang menunjukkan bagian yang dapat diprose
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm]{tex/conf.png}
+\includegraphics[width=8cm]{conf.png}
 \caption{\emph{Confusion matrix}}
 \label{fig:confmatrix2}
 \end{figure}

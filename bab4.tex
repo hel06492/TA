@@ -11,24 +11,24 @@ Data berupa foto jeruk yang telah diambil sesuai dengan langkah-langkah yang dij
 \begin{tabular}{|c|c|c|c|}
 \hline
 DSC\_2994.JPG & DSC\_2995.JPG & DSC\_2996.JPG & DSC\_2997.JPG \\ 
-\includegraphics[width=3.2cm]{../data/res/DSC_2994.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_2995.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_2996.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_2997.JPG} \\
+\includegraphics[width=3.2cm]{DSC_2994.JPG} &
+\includegraphics[width=3.2cm]{DSC_2995.JPG} &
+\includegraphics[width=3.2cm]{DSC_2996.JPG} &
+\includegraphics[width=3.2cm]{DSC_2997.JPG} \\
 1a & 1b & 2a & 2b \\
 \hline
 DSC\_2998.JPG & DSC\_2999.JPG & DSC\_3000.JPG & DSC\_3001.JPG \\ 
-\includegraphics[width=3.2cm]{../data/res/DSC_2998.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_2999.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_3000.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_3001.JPG} \\
+\includegraphics[width=3.2cm]{DSC_2998.JPG} &
+\includegraphics[width=3.2cm]{DSC_2999.JPG} &
+\includegraphics[width=3.2cm]{DSC_3000.JPG} &
+\includegraphics[width=3.2cm]{DSC_3001.JPG} \\
 3a & 3b & 4a & 4b \\
 \hline
 DSC\_3002.JPG & DSC\_3003.JPG & DSC\_3004.JPG & DSC\_3005.JPG \\ 
-\includegraphics[width=3.2cm]{../data/res/DSC_3002.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_3003.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_3004.JPG} &
-\includegraphics[width=3.2cm]{../data/res/DSC_3005.JPG} \\
+\includegraphics[width=3.2cm]{DSC_3002.JPG} &
+\includegraphics[width=3.2cm]{DSC_3003.JPG} &
+\includegraphics[width=3.2cm]{DSC_3004.JPG} &
+\includegraphics[width=3.2cm]{DSC_3005.JPG} \\
 5a & 5b & 6a & 6b \\
 \hline
 \end{tabular}
@@ -40,7 +40,7 @@ Pada bab ini digunakan salah satu foto jeruk sebagai contoh hasil pengolahan dat
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm]{../data/res/DSC_2996.JPG}
+\includegraphics[width=8cm]{DSC_2996.JPG}
 \caption{Foto jeruk yang diolah}
 \end{figure}
 
@@ -51,7 +51,7 @@ Foto jeruk diperkecil resolusinya dan disunting secara manual untuk menghilangka
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=8cm]{../olahdata/proc/smoothcrop/DSC_2996.png}
+\includegraphics[width=8cm]{DSC_2996.png}
 \caption{Gambar yang sudah dibersihkan}
 \label{fig:imgedited}
 \end{figure}
@@ -79,13 +79,13 @@ B & 44 \\
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.2cm]{tex/2996r.png} \hskip 0.5cm
-\includegraphics[width=3.2cm]{tex/2996g.png} \hskip 0.5cm
-\includegraphics[width=3.2cm]{tex/2996b.png}
+\includegraphics[width=3.2cm]{2996r.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{2996g.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{2996b.png}
 \vskip 1cm
-\includegraphics[width=3.2cm]{tex/2996rt.png} \hskip 0.5cm
-\includegraphics[width=3.2cm]{tex/2996gt.png} \hskip 0.5cm
-\includegraphics[width=3.2cm]{tex/2996bt.png}
+\includegraphics[width=3.2cm]{2996rt.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{2996gt.png} \hskip 0.5cm
+\includegraphics[width=3.2cm]{2996bt.png}
 \caption{Hasil operasi \emph{thresholding} pada komponen warna citra R, G, dan B}
 \end{figure}
 
@@ -97,11 +97,11 @@ Hasil operasi \emph{thresholding} menunjukkan bahwa komponen warna biru pada cit
 
 Klasifikasi awal dilakukan dengan \emph{weighted sum} dari ketiga citra biner hasil \emph{thresholding} untuk ketiga komponen warna. \emph{Pixel} citra jeruk diklasifikasikan berdasarkan keberadaan komponen warna primer. Hasil klasifikasi adalah matriks integer dengan rentang nilai $[1..8]$. Dari matriks ini dihitung banyaknya \emph{pixel} yang dimasukkan ke masing-masing kelas sehingga dapat diketahui rata-rata intensitas tiga komponen warna dari masing-masing kelas.
 
-Hasil klasifikasi awal membagi jeruk menjadi 8 kelas berdasarkan segmentasi komponen-komponen warna primer dengan metode Otsu. Pada contoh ditunjukkan visualisasi hasil klasifikasi pada gambar \ref{fig:classinit}, nilai-nilai intensitas asli \emph{pixel} digantikan dengan rata-rata intensitas kelas masing-masing \emph{pixel} tersebut. Tabel rata-rata intensitas \ref{table:clsrgbavg1} menunjukkan bahwa seluruh kelas warna muncul pada citra yang diuji.
+Hasil klasifikasi awal membagi jeruk menjadi 8 kelas berdasarkan segmentasi komponen-komponen warna primer dengan metode Otsu. Pada contoh ditunjukkan visualisasi hasil klasifikasi pada gambar \ref{fig:classinit}, nilai-nilai intensitas asli \emph{pixel} digantikan dengan rata-rata intensitas kelas masing-masing \emph{pixel} tersebut. Tabel rata-rata intensitas tabel \ref{table:clsrgbavg1} menunjukkan bahwa seluruh kelas warna muncul pada citra yang diuji.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm]{../olahdata/proc/data/seg3a.png}
+\includegraphics[width=8cm]{seg3a.png}
 \caption{Visualisasi hasil klasifikasi \emph{pixel} awal}
 \label{fig:classinit}
 \end{figure}
@@ -198,7 +198,7 @@ K8 & K7 & -- \\
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm]{../olahdata/proc/data/seg3b.png}
+\includegraphics[width=8cm]{seg3b.png}
 \caption{Hasil klasifikasi ulang \emph{pixel}}
 \label{fig:classfinimg}
 \end{figure}
@@ -209,8 +209,8 @@ Dari matriks data klasifikasi akhir dilakukan \emph{thresholding} untuk mengambi
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/seg3b.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3normal.png}
+\includegraphics[width=4cm]{seg3b.png} \qquad
+\includegraphics[width=4cm]{mask3normal.png}
 \caption{Operasi \emph{thresholding} pada matriks klasifikasi akhir dan citra biner yang dihasilkan}
 \label{fig:finclassthresh}
 \end{figure}
@@ -219,29 +219,19 @@ Gambar \ref{fig:finclassthresh} menunjukkan bahwa bagian tepi masuk ke dalam kel
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=2.5cm]{tex/cropgreen1.png} \qquad
-\includegraphics[width=2.5cm]{tex/cropgreen2.png}
+\includegraphics[width=2.5cm]{cropgreen1.png} \qquad
+\includegraphics[width=2.5cm]{cropgreen2.png}
 \caption{Pengaruh variasi warna pada deteksi}
 \label{fig:greenyellow}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3normal.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3filled.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
+\includegraphics[width=4cm]{mask3normal.png} \qquad
+\includegraphics[width=4cm]{mask3filled.png} \qquad
+\includegraphics[width=4cm]{mask3blemish.png}
 \caption{\emph{Mask} tekstur normal, hasil penutupan lubang dan cacat yang dideteksi}
 \end{figure}
-
-%\begin{figure}[h!]
-%\centering
-%\caption{Hasil penutupan lubang pada \emph{mask}}
-%\end{figure}
-
-%\begin{figure}[h!]
-%\centering
-%\caption{Daerah cacat yang dideteksi}
-%\end{figure}
 
 Tabel \ref{table:pixelcountexample} adalah data-data jumlah \emph{pixel} yang didapatkan pada gambar di atas.
 
@@ -261,28 +251,28 @@ Daerah cacat & 3615 \\
 
 \section{Perhitungan Luas Cacat dan Akurasi}
 
-Sebagai acuan akurasi deteksi, digunakan citra biner cacat tekstur kulit yang digambar secara manual dengan menggunakan perangkat \emph{fuzzy select} dan \emph{color select} pada aplikasi pengolah citra Gimp. Luas daerah yang dapat diproses dibandingkan dengan dengan keseluruhan luas objek jeruk dalam citra untuk mendapatkan prosentase luas deteksi.
+Sebagai acuan akurasi deteksi, digunakan citra biner cacat tekstur kulit yang digambar secara manual dengan menggunakan perangkat \emph{fuzzy select} dan \emph{color select} pada aplikasi pengolah citra Gimp. Luas daerah yang dapat diproses dibandingkan dengan dengan keseluruhan luas objek jeruk dalam citra untuk memperoleh prosentase luas deteksi.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png} \qquad
-\includegraphics[width=4cm]{../olahdata/manual/DSC_2996.png}
+\includegraphics[width=4cm]{mask3blemish.png} \qquad
+\includegraphics[width=4cm]{manDSC_2996.png}
 \caption{Hasil deteksi dengan pemrosesan dan hasil penandaan manual}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{tex/tp3.png} \qquad
-\includegraphics[width=4cm]{tex/tn3.png} \vskip 0.5cm
-\includegraphics[width=4cm]{tex/fp3.png} \qquad
-\includegraphics[width=4cm]{tex/fn3.png}
+\includegraphics[width=4cm]{tp3.png} \qquad
+\includegraphics[width=4cm]{tn3.png} \vskip 0.5cm
+\includegraphics[width=4cm]{fp3.png} \qquad
+\includegraphics[width=4cm]{fn3.png}
 \caption{\emph{Mask} pengujian hasil deteksi: \emph{true positive}, \emph{true negative}, \emph{false positive}, \emph{false negative}}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3filled.png} \qquad
-\includegraphics[width=4cm]{tex/detected3.png}
+\includegraphics[width=4cm]{mask3filled.png} \qquad
+\includegraphics[width=4cm]{detected3.png}
 \caption{Perbandingan bagian jeruk yang dapat dideteksi dengan keseluruhan permukaan jeruk pada citra}
 \end{figure}
 
@@ -320,11 +310,6 @@ deteksi =\frac{221386}{271992} \ast 100\% = 82.72\%
 
 Prosentase hasil deteksi dan akurasi dari semua data eksperimen ditunjukkan pada tabel \ref{table:detrecap}.
 
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=10cm]{tex/comparison.png}
-%\caption{Akurasi deteksi}
-%\end{figure}
 \begin{table}[h!]
 \centering
 \begin{tabular}{|l|l|l|l|l|}
@@ -385,40 +370,40 @@ Data & $n$ total & $n$ det.&  $TP$ & $FP$ & $TN$ & $FN$ & \% Presisi & \% Akuras
 & Foto & Normal & Cacat & Det. Manual \\
 \hline
 1a &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2994.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask1normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask1blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_2994.png} \\
+\includegraphics[width=3cm]{DSC_2994.png} &
+\includegraphics[width=3cm]{mask1normal.png} &
+\includegraphics[width=3cm]{mask1blemish.png} &
+\includegraphics[width=3cm]{manDSC_2994.png} \\
 \hline
 1b &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2995.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask2normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask2blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_2995.png} \\
+\includegraphics[width=3cm]{DSC_2995.png} &
+\includegraphics[width=3cm]{mask2normal.png} &
+\includegraphics[width=3cm]{mask2blemish.png} &
+\includegraphics[width=3cm]{manDSC_2995.png} \\
 \hline
 2a &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2997.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask3normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask3blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_2997.png} \\
+\includegraphics[width=3cm]{DSC_2997.png} &
+\includegraphics[width=3cm]{mask3normal.png} &
+\includegraphics[width=3cm]{mask3blemish.png} &
+\includegraphics[width=3cm]{manDSC_2997.png} \\
 \hline
 2b &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2996.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask4normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask4blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_2996.png} \\
+\includegraphics[width=3cm]{DSC_2996.png} &
+\includegraphics[width=3cm]{mask4normal.png} &
+\includegraphics[width=3cm]{mask4blemish.png} &
+\includegraphics[width=3cm]{manDSC_2996.png} \\
 \hline
 3a &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2998.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask5normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask5blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_2998.png} \\
+\includegraphics[width=3cm]{DSC_2998.png} &
+\includegraphics[width=3cm]{mask5normal.png} &
+\includegraphics[width=3cm]{mask5blemish.png} &
+\includegraphics[width=3cm]{manDSC_2998.png} \\
 \hline
 3b &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_2999.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask6normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask6blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_2999.png} \\
+\includegraphics[width=3cm]{DSC_2999.png} &
+\includegraphics[width=3cm]{mask6normal.png} &
+\includegraphics[width=3cm]{mask6blemish.png} &
+\includegraphics[width=3cm]{manDSC_2999.png} \\
 \hline
 \end{tabular}
 \caption{Hasil deteksi cacat dengan pemrosesan dan penandaan manual (bagian 1)}
@@ -427,44 +412,45 @@ Data & $n$ total & $n$ det.&  $TP$ & $FP$ & $TN$ & $FN$ & \% Presisi & \% Akuras
 
 \begin{table}[h!]
 \centering
+\itshape{(Lanjutan)}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 & Foto & Normal & Cacat & Det. Manual \\
 4a &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3000.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask7normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask7blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_3000.png} \\
+\includegraphics[width=3cm]{DSC_3000.png} &
+\includegraphics[width=3cm]{mask7normal.png} &
+\includegraphics[width=3cm]{mask7blemish.png} &
+\includegraphics[width=3cm]{manDSC_3000.png} \\
 \hline
 4b &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3001.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask8normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask8blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_3001.png} \\
+\includegraphics[width=3cm]{DSC_3001.png} &
+\includegraphics[width=3cm]{mask8normal.png} &
+\includegraphics[width=3cm]{mask8blemish.png} &
+\includegraphics[width=3cm]{manDSC_3001.png} \\
 \hline
 5a &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3002.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask9normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask9blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_3002.png} \\
+\includegraphics[width=3cm]{DSC_3002.png} &
+\includegraphics[width=3cm]{mask9normal.png} &
+\includegraphics[width=3cm]{mask9blemish.png} &
+\includegraphics[width=3cm]{manDSC_3002.png} \\
 \hline
 5b &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3003.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask10normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask10blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_3003.png} \\
+\includegraphics[width=3cm]{DSC_3003.png} &
+\includegraphics[width=3cm]{mask10normal.png} &
+\includegraphics[width=3cm]{mask10blemish.png} &
+\includegraphics[width=3cm]{manDSC_3003.png} \\
 \hline
 6a &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3004.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask11normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask11blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_3004.png} \\
+\includegraphics[width=3cm]{DSC_3004.png} &
+\includegraphics[width=3cm]{mask11normal.png} &
+\includegraphics[width=3cm]{mask11blemish.png} &
+\includegraphics[width=3cm]{manDSC_3004.png} \\
 \hline
 6b &
-\includegraphics[width=3cm]{../olahdata/proc/smoothcrop/DSC_3005.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask12normal.png} &
-\includegraphics[width=3cm]{../olahdata/proc/data/mask12blemish.png} &
-\includegraphics[width=3cm]{../olahdata/manual/DSC_3005.png} \\
+\includegraphics[width=3cm]{DSC_3005.png} &
+\includegraphics[width=3cm]{mask12normal.png} &
+\includegraphics[width=3cm]{mask12blemish.png} &
+\includegraphics[width=3cm]{manDSC_3005.png} \\
 \hline
 \end{tabular}
 \caption{Hasil deteksi cacat dengan pemrosesan dan penandaan manual (bagian 2)}
@@ -487,8 +473,8 @@ Untuk perbandingan hasil akan dipilih beberapa data yang memiliki ciri signifika
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_2996.png}
-\includegraphics[width=4cm]{../olahdata/proc/data/seg3a.png}
+\includegraphics[width=4cm]{DSC_2996.png}
+\includegraphics[width=4cm]{seg3a.png}
 \caption[]{Hasil klasifikasi awal data 2a}
 \end{figure}
 
@@ -556,14 +542,14 @@ K8 & K7 & -- \\
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/seg3b.png}
+\includegraphics[width=4cm]{seg3b.png}
 \caption[]{Hasil klasifikasi akhir data 2a}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3normal.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask3blemish.png}
+\includegraphics[width=4cm]{mask3normal.png} \qquad
+\includegraphics[width=4cm]{mask3blemish.png}
 \caption[]{Hasil deteksi daerah normal dan cacat 2a}
 \end{figure}
 
@@ -594,8 +580,8 @@ Data menunjukkan variasi intensitas yang relatif rendah dengan kontras antara da
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_3000.png}
-\includegraphics[width=4cm]{../olahdata/proc/data/seg7a.png}
+\includegraphics[width=4cm]{DSC_3000.png}
+\includegraphics[width=4cm]{seg7a.png}
 \caption[]{Hasil klasifikasi awal data 4a}
 \end{figure}
 
@@ -665,14 +651,14 @@ K8 & K7 & -- \\
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/seg7b.png}
+\includegraphics[width=4cm]{seg7b.png}
 \caption[]{Hasil klasifikasi akhir data 4a}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask7normal.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask7blemish.png}
+\includegraphics[width=4cm]{mask7normal.png} \qquad
+\includegraphics[width=4cm]{mask7blemish.png}
 \caption[]{Hasil deteksi daerah normal dan cacat 4a}
 \end{figure}
 
@@ -702,8 +688,8 @@ Data 1b merupakan data dengan tingkat \emph{recall} yang sangat rendah.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/smoothcrop/DSC_2995.png}
-\includegraphics[width=4cm]{../olahdata/proc/data/seg2a.png}
+\includegraphics[width=4cm]{DSC_2995.png}
+\includegraphics[width=4cm]{seg2a.png}
 \caption[]{Hasil klasifikasi awal data 1b}
 \end{figure}
 
@@ -772,14 +758,14 @@ K8 & K7 & -- \\
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/seg2b.png}
+\includegraphics[width=4cm]{seg2b.png}
 \caption[]{Hasil klasifikasi akhir data 1b}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=4cm]{../olahdata/proc/data/mask2normal.png} \qquad
-\includegraphics[width=4cm]{../olahdata/proc/data/mask2blemish.png}
+\includegraphics[width=4cm]{mask2normal.png} \qquad
+\includegraphics[width=4cm]{mask2blemish.png}
 \caption[]{Hasil deteksi daerah normal dan cacat 1b}
 \end{figure}
 
@@ -812,9 +798,5 @@ Data citra jeruk 1b memperlihatkan adanya kilap di tengah objek. Perbedaan inten
 Data menunjukkan bahwa metode deteksi menghasilkan hasil yang bervariasi, dengan akurasi tinggi, presisi yang cukup baik, namun \emph{recall} sangat rendah. Tingkat \emph{recall} yang rendah ini disebabkan karena hanya sebagian dari permukaan jeruk yang dapat dideteksi, dan terutama karena citra biner yang digunakan untuk referensi kurang akurat.
 
 Metode ini selain tidak dirancang untuk mendeteksi cacat pada bagian-bagian gelap pada tepi jeruk, juga tidak dapat mendeteksi cacat pada bagian tengah jeruk yang berkilap karena sorotan sumber cahaya. Perlu dilakukan penyesuaian pencahayaan untuk mengurangi atau menghindari munculnya kilap di tengah objek.
-
-%Karena metode yang digunakan mengacu pada tepi daerah cacat maka akurasi metode tidak diukur dari prosentase kesalahan luas cacat yang terdeteksi namun dari banyaknya daerah-daerah cacat yang terdeteksi dan ketepatan lokasi deteksi tersebut.
-
-%(confusion matrix, presisi, akurasi)
 
 \end{document}
